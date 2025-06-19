@@ -1,0 +1,69 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "about": "À propos",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "NZOGNING MBONDA Socrate",
+    "subtitle": "Créateur d'expériences numériques modernes",
+    "description": "Passionné par le développement web et mobile, je crée des applications performantes et intuitives avec les dernières technologies.",
+    "contactButton": "Me contacter",
+    "projectsButton": "Voir mes projets"
+  },
+  "about": {
+    "title": "À propos de moi",
+    "subtitle": "Découvrez mon parcours et ma passion pour le développement",
+    "description1": "Développeur web et mobile passionné avec plus de 3 ans d'expérience dans la création d'applications modernes et performantes.",
+    "description2": "Je me spécialise dans les technologies React, Next.js, et React Native pour créer des expériences utilisateur exceptionnelles.",
+    "description3": "Toujours à l'affût des dernières tendances technologiques, j'aime relever de nouveaux défis et apprendre continuellement.",
+    "webDev": "Développement Web",
+    "webDevDesc": "Création d'applications web modernes avec React et Next.js",
+    "mobileDev": "Développement Mobile",
+    "mobileDevDesc": "Applications mobiles natives avec React Native",
+    "fullStack": "Full Stack",
+    "fullStackDesc": "Développement complet front-end et back-end"
+  },
+  "skills": {
+    "title": "Mes Compétences",
+    "subtitle": "Technologies et outils que je maîtrise",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Outils",
+    "mobile": "Mobile"
+  },
+  "projects": {
+    "title": "Mes Projets",
+    "subtitle": "Découvrez quelques-unes de mes réalisations",
+    "project1Desc": "Plateforme e-commerce complète avec panier, paiement et gestion des commandes",
+    "project2Desc": "Application de gestion de tâches collaborative avec temps réel",
+    "project3Desc": "Application météo mobile avec géolocalisation et prévisions",
+    "liveDemo": "Démo"
+  },
+  "contact": {
+    "title": "Contactez-moi",
+    "subtitle": "Discutons de votre prochain projet",
+    "getInTouch": "Restons en contact",
+    "contactDescription": "N'hésitez pas à me contacter pour discuter de vos projets ou pour toute collaboration.",
+    "sendMessage": "Envoyer un message",
+    "namePlaceholder": "Votre nom",
+    "emailPlaceholder": "Votre email",
+    "messagePlaceholder": "Votre message",
+    "sendButton": "Envoyer",
+    "sending": "Envoi en cours...",
+    "email": "Email",
+    "phone": "Téléphone",
+    "location": "Localisation",
+    "successTitle": "Message envoyé !",
+    "successMessage": "Votre message a été envoyé avec succès. Je vous répondrai bientôt.",
+    "errorTitle": "Erreur",
+    "errorMessage": "Une erreur s'est produite lors de l'envoi du message."
+  },
+  "footer": {
+    "title": "Travaillons ensemble",
+    "description": "Prêt à donner vie à vos idées ? Contactez-moi pour discuter de votre prochain projet.",
+    "rights": "Tous droits réservés."
+  }
+}

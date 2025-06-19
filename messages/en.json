@@ -1,0 +1,69 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "NZOGNING MBONDA Socrate",
+    "subtitle": "Creator of modern digital experiences",
+    "description": "Passionate about web and mobile development, I create performant and intuitive applications with the latest technologies.",
+    "contactButton": "Contact me",
+    "projectsButton": "View my projects"
+  },
+  "about": {
+    "title": "About me",
+    "subtitle": "Discover my journey and passion for development",
+    "description1": "Passionate web and mobile developer with over 3 years of experience creating modern and performant applications.",
+    "description2": "I specialize in React, Next.js, and React Native technologies to create exceptional user experiences.",
+    "description3": "Always keeping up with the latest tech trends, I love taking on new challenges and learning continuously.",
+    "webDev": "Web Development",
+    "webDevDesc": "Creating modern web applications with React and Next.js",
+    "mobileDev": "Mobile Development",
+    "mobileDevDesc": "Native mobile applications with React Native",
+    "fullStack": "Full Stack",
+    "fullStackDesc": "Complete front-end and back-end development"
+  },
+  "skills": {
+    "title": "My Skills",
+    "subtitle": "Technologies and tools I master",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Tools",
+    "mobile": "Mobile"
+  },
+  "projects": {
+    "title": "My Projects",
+    "subtitle": "Discover some of my achievements",
+    "project1Desc": "Complete e-commerce platform with cart, payment and order management",
+    "project2Desc": "Collaborative task management application with real-time features",
+    "project3Desc": "Mobile weather app with geolocation and forecasts",
+    "liveDemo": "Live Demo"
+  },
+  "contact": {
+    "title": "Contact me",
+    "subtitle": "Let's discuss your next project",
+    "getInTouch": "Get in touch",
+    "contactDescription": "Feel free to contact me to discuss your projects or for any collaboration.",
+    "sendMessage": "Send a message",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "Your email",
+    "messagePlaceholder": "Your message",
+    "sendButton": "Send",
+    "sending": "Sending...",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "successTitle": "Message sent!",
+    "successMessage": "Your message has been sent successfully. I'll get back to you soon.",
+    "errorTitle": "Error",
+    "errorMessage": "An error occurred while sending the message."
+  },
+  "footer": {
+    "title": "Let's work together",
+    "description": "Ready to bring your ideas to life? Contact me to discuss your next project.",
+    "rights": "All rights reserved."
+  }
+}
