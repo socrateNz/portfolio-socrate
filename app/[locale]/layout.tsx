@@ -8,9 +8,11 @@ import { ThemeProvider } from '@/components/theme-provider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Portfolio - Développeur Web & Mobile",
+  title: "Etarcos-Dev - Développeur Web & Mobile",
   description: "Portfolio personnel d'un développeur web et mobile spécialisé en React, Next.js, et technologies modernes",
-  // ... rest of your metadata
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 // Generate static params for known locales

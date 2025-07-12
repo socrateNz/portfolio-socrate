@@ -7,39 +7,106 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink, Github } from "lucide-react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 
 export function Projects() {
   const t = useTranslations("projects")
 
   const projects = [
     {
-      title: "E-Commerce Platform",
-      tache: ["Design", "Frontend", "Backend", "Refonte"],
+      title: "Tyju InfoSport",
+      tache: ["Analyse", "Frontend", "Intégration", "Refonte"],
       description: t("project1Desc"),
       image: "/placeholder.svg?height=200&width=300",
-      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Stripe"],
+      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Shadcn"],
       githubUrl: "https://github.com",
-      liveUrl: "https://example.com",
+      liveUrl: "https://www.tyjuinfosport.com/",
+      private: true
     },
     {
-      title: "Task Management App",
-      tache: ["Design", "Frontend", "Backend", "Refonte"],
+      title: "Krestdev",
+      tache: ["Frontend", "Backend", "Intégration", "Refonte"],
       description: t("project2Desc"),
       image: "/placeholder.svg?height=200&width=300",
-      technologies: ["React", "Node.js", "MongoDB", "Express"],
+      technologies: ["NextJs", "Tailwind CSS", "Nodemail"],
       githubUrl: "https://github.com",
-      liveUrl: "https://example.com",
+      liveUrl: "https://www.krestdev.com/",
+      private: true
     },
     {
-      title: "Weather App",
-      tache: ["Design", "Frontend", "Backend", "Refonte"],
+      title: "Fondation Jeanne Caroline Mfege",
+      tache: ["Frontend", "Refonte"],
       description: t("project3Desc"),
       image: "/placeholder.svg?height=200&width=300",
-      technologies: ["React Native", "Expo", "API REST"],
+      technologies: ["React", "Tailwind CSS"],
       githubUrl: "https://github.com",
-      liveUrl: "https://example.com",
+      liveUrl: "https://www.fondationjeannecarolinemfege.org/fr/",
+      private: true
     },
+    {
+      title: "CVGen Pro",
+      tache: ["Design", "Frontend", "Intégration", "Backend", "Refonte"],
+      description: t("project3Desc"),
+      image: "/placeholder.svg?height=200&width=300",
+      technologies: ["NextJs", "NodeJs", "NodeMail", "Tailwind CSS"],
+      githubUrl: "https://github.com",
+      liveUrl: "",
+      private: true
+    },
+    {
+      title: "Saga Africa",
+      tache: ["Frontend", "Refonte"],
+      description: t("project3Desc"),
+      image: "/placeholder.svg?height=200&width=300",
+      technologies: ["NextJs", "Tailwind CSS"],
+      githubUrl: "https://github.com",
+      liveUrl: "https://www.saga-africa.com/",
+      private: true
+    },
+    {
+      title: "Le Carino Pizzeria",
+      tache: ["Frontend", "Refonte"],
+      description: t("project3Desc"),
+      image: "/placeholder.svg?height=200&width=300",
+      technologies: ["NextJs", "Tailwind CSS"],
+      githubUrl: "https://github.com",
+      liveUrl: "https://www.le-carino.com/",
+      private: true
+    },
+    {
+      title: "Crea Consult",
+      tache: ["Frontend", "Refonte"],
+      description: t("project3Desc"),
+      image: "/placeholder.svg?height=200&width=300",
+      technologies: ["NextJs", "Tailwind CSS"],
+      githubUrl: "https://github.com",
+      liveUrl: "https://betcreaconsult.com/fr",
+      private: true
+    },
+    {
+      title: "Loumo Shop",
+      tache: ["Frontend", "Intégration", "Refonte",],
+      description: t("project3Desc"),
+      image: "/placeholder.svg?height=200&width=300",
+      technologies: ["NextJs", "Tailwind CSS"],
+      githubUrl: "https://github.com",
+      liveUrl: "https://home.loumoshop.com/",
+      private: true
+    },
+    {
+      title: "Krest Holding",
+      tache: ["Frontend", "Refonte",],
+      description: t("project3Desc"),
+      image: "/placeholder.svg?height=200&width=300",
+      technologies: ["NextJs", "Tailwind CSS"],
+      githubUrl: "https://github.com",
+      liveUrl: "https://www.krestholding.com/",
+      private: true
+    },
+
   ]
+
+  const router = useRouter()
 
   return (
     <section id="projects" className="py-20 bg-muted/30">
@@ -96,11 +163,9 @@ export function Projects() {
                   </div>
                 </CardContent>
                 <CardFooter className="p-6 pt-0 flex gap-2">
-                  <Button variant="outline" size="sm" asChild>
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github className="mr-2 h-4 w-4" />
-                      Code
-                    </a>
+                  <Button onClick={() => router.push(project.githubUrl)} className={`${project.private && "cursor-not-allowed"}`} disabled={project.private} variant="outline" size="sm">
+                    <Github className="mr-2 h-4 w-4" />
+                    Code
                   </Button>
                   <Button size="sm" asChild>
                     <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
