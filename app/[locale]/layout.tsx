@@ -9,10 +9,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: "Etarcos-Dev - Développeur Web & Mobile",
-  description: "Portfolio personnel d'un développeur web et mobile spécialisé en React, Next.js, et technologies modernes",
-  icons: {
-    icon: '/favicon.ico',
-  },
+  description: "Portfolio personnel de développeur web et mobile spécialisé en React, Next.js, et technologies modernes",
 };
 
 // Generate static params for known locales
