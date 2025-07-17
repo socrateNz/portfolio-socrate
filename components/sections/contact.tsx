@@ -26,14 +26,21 @@ export function Contact() {
     e.preventDefault()
     setIsLoading(true)
 
-    // Simulation d'envoi d'email (remplacer par EmailJS ou votre backend)
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!res.ok) throw new Error("Erreur d'envoi")
 
       toast({
         title: t("successTitle"),
         description: t("successMessage"),
-        className: "border-green-500 bg-green-50 text-green-900"
+        className: "border-green-500 bg-green-50 text-green-900",
       })
 
       setFormData({ name: "", email: "", message: "" })
@@ -42,7 +49,7 @@ export function Contact() {
         title: t("errorTitle"),
         description: t("errorMessage"),
         variant: "destructive",
-        className: "border-red-500 bg-red-50 text-red-900"
+        className: "border-red-500 bg-red-50 text-red-900",
       })
     } finally {
       setIsLoading(false)
