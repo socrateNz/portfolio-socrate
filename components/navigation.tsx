@@ -43,7 +43,7 @@ export function Navigation() {
         <div className="flex items-center justify-between h-16">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex">
             <img src="/logo.png" alt="Portfolio" className="h-[60px]" />
-            <p className="text-3xl font-bold flex items-center text-[#007CFF]">Etarcos Dev</p>
+            <p className="text-3xl font-bold hidden md:flex items-center text-[#007CFF]">Etarcos Dev</p>
           </motion.div>
 
           {/* Desktop Navigation */}
