@@ -22,7 +22,7 @@ export function Skills() {
     },
     {
       title: t("mobile"),
-      skills: ["React Native", "Expo", "Flutter"],
+      skills: ["React Native", "Expo", "NativeWind", "Flutter"],
     },
   ]
 

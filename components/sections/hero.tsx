@@ -26,11 +26,11 @@ export function Hero() {
             className="relative w-32 h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 mx-auto"
           >
             <Image
-              src="/moi.jpg?height=300&width=300"
+              src="/profil.webp?height=300&width=300"
               alt="Photo de profil"
               width={300}
               height={300}
-              className="rounded-full border-4 border-primary/20 shadow-xl"
+              className="rounded-full border-4 border-primary/20 shadow-xl object-cover"
             />
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 to-transparent"></div>
           </motion.div>

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useTranslations } from "next-intl"
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink, Github } from "lucide-react"
@@ -144,9 +144,22 @@ export function Projects() {
 
   const router = useRouter()
 
+  // const etarcosSold =
+  // {
+  //   title: "Etarcos Sold",
+  //   tache: ["Analyse", "Frontend", "Backend", "Intégration", "Refonte"],
+  //   description: "Application mobile(Android uniquement) permettant de gerer vos differents soldes de vos differents portefeuilles avec historiques des transactions",
+  //   image: "/etarcosold.webp",
+  //   technologies: ["React Native", "TypeScript", "Tailwind CSS", "Expo"],
+  //   githubUrl: "https://github.com",
+  //   liveUrl: "https://expo.dev/accounts/etarcos/projects/bolt-expo-nativewind/builds/477a69b1-3d4c-479a-8183-0347362fef86",
+  //   private: false
+  // }
+
+
   // Utiliser les projets de la base de données ou les projets de fallback
   const displayProjects = projects.length > 0
-   ? projects :  []
+    ? projects : []
   //  fallbackProjects
 
   if (loading) {
@@ -180,6 +193,7 @@ export function Projects() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
           {displayProjects.map((project, index) => (
             <motion.div
               key={index}
