@@ -11,7 +11,7 @@ export async function GET(
   try {
     await dbConnect();
     
-    const project = await Project.findById(params.id);
+    const project = await Project.findById((await params).id);
     
     if (!project) {
       return NextResponse.json(
@@ -58,7 +58,7 @@ export async function PUT(
     }
     
     const project = await Project.findByIdAndUpdate(
-      params.id,
+      (await params).id,
       body,
       { new: true, runValidators: true }
     );

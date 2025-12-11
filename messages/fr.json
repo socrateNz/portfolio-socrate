@@ -11,7 +11,10 @@
     "subtitle": "Créateur d'expériences numériques modernes",
     "description": "Passionné par le développement web et mobile, je crée des applications performantes et intuitives avec les dernières technologies.",
     "contactButton": "Me contacter",
-    "projectsButton": "Voir mes projets"
+    "projectsButton": "Voir mes projets",
+    "projects": "Mes projets",
+    "base": "Situé à Douala, Cameroon",
+    "availability": "Disponible pour le travail libre"
   },
   "about": {
     "title": "À propos de moi",
