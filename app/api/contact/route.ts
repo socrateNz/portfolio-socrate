@@ -46,7 +46,7 @@ export async function POST(req: Request) {
                     </table>
                     </div>
                     <div style="background-color: #f9fafb; padding: 16px; text-align: center; font-size: 12px; color: #999;">
-                    Ce message a été généré automatiquement depuis votre site web.
+                    Ce message a été généré automatiquement depuis votre portfolio.
                     </div>
                 </div>
                 `
