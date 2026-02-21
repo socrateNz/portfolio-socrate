@@ -91,7 +91,11 @@ export function Contact() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("title")}</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              {t("title")}
+            </span>
+          </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("subtitle")}</p>
         </motion.div>
 

@@ -17,7 +17,7 @@
     "project": "Projects shipped",
     "debug": "Lines of debug",
     "availability": "Available for opportunities and freelances",
-    "starting": "Starting November 2021"
+    "starting": "Starting November 2022"
   },
   "about": {
     "title": "About me",
@@ -30,7 +30,57 @@
     "mobileDev": "Mobile Development",
     "mobileDevDesc": "Native mobile applications with React Native",
     "fullStack": "Full Stack",
-    "fullStackDesc": "Complete front-end and back-end development"
+    "fullStackDesc": "Complete front-end and back-end development",
+    "badge": "About Me",
+    "profileName": "Etarcos Dev",
+    "profileHandle": "@socrateNz",
+    "githubLink": "GitHub",
+    "linkedinLink": "LinkedIn",
+    "achievements": {
+      "coffee": "Cups of coffee",
+      "articles": "Tech articles",
+      "projects": "Projects completed",
+      "coffeeValue": "1000+",
+      "articlesValue": "25+",
+      "projectsValue": "30+"
+    },
+    "journey": {
+      "title": "My Journey",
+      "currentFocus": "Currently focusing on",
+      "timeline": {
+        "2023": {
+          "title": "Senior Developer",
+          "company": "Tech Corp"
+        },
+        "2021": {
+          "title": "Full Stack Developer",
+          "company": "StartUp Inc"
+        },
+        "2019": {
+          "title": "Junior Developer",
+          "company": "Agency"
+        }
+      },
+      "focus": {
+        "ai": "AI Integration",
+        "performance": "Performance",
+        "accessibility": "Accessibility",
+        "web3": "Web3"
+      }
+    },
+    "techStack": {
+      "title": "Tech Stack",
+      "react": "React",
+      "typescript": "TypeScript",
+      "node": "Node.js",
+      "python": "Python"
+    },
+    "skills": {
+      "react": "React",
+      "typescript": "TypeScript",
+      "node": "Node.js",
+      "python": "Python"
+    }
   },
   "skills": {
     "title": "My Skills",
@@ -41,12 +91,26 @@
     "mobile": "Mobile"
   },
   "projects": {
+    "badge": "Portfolio",
     "title": "My Projects",
-    "subtitle": "Discover some of my achievements",
-    "project1Desc": "Complete e-commerce platform with cart, payment and order management",
-    "project2Desc": "Collaborative task management application with real-time features",
-    "project3Desc": "Mobile weather app with geolocation and forecasts",
-    "liveDemo": "Live Demo"
+    "subtitle": "Discover my latest work and personal projects",
+    "code": "Code",
+    "liveDemo": "Live Demo",
+    "filters": {
+      "all": "All Projects",
+      "featured": "Featured",
+      "technologies": "Technologies"
+    },
+    "stats": {
+      "total": "Total Projects",
+      "featured": "Featured",
+      "technologies": "Technologies"
+    },
+    "empty": {
+      "title": "No projects found",
+      "description": "Try adjusting your filters or check back later."
+    },
+    "viewAll": "View All Projects"
   },
   "contact": {
     "title": "Contact me",

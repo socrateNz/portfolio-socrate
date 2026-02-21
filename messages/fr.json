@@ -17,20 +17,70 @@
     "project": "Projets livrés",
     "debug": "Lignes de débogage",
     "availability": "Disponible pour des opportunités et les freelance",
-    "starting": "Depuis novembre 2021"
+    "starting": "Depuis novembre 2022"
   },
   "about": {
     "title": "À propos de moi",
     "subtitle": "Découvrez mon parcours et ma passion pour le développement",
     "description1": "Développeur web et mobile passionné avec plus de 3 ans d'expérience dans la création d'applications modernes et performantes.",
-    "description2": "Je me spécialise dans les technologies React, Next.js, et React Native pour créer des expériences utilisateur exceptionnelles.",
-    "description3": "Toujours à l'affût des dernières tendances technologiques, j'aime relever de nouveaux défis et apprendre continuellement.",
+    "description2": "Je me spécialise dans les technologies React, Next.js et React Native pour créer des expériences utilisateur exceptionnelles.",
+    "description3": "Toujours à l'affût des dernières tendances tech, j'aime relever de nouveaux défis et apprendre continuellement.",
     "webDev": "Développement Web",
     "webDevDesc": "Création d'applications web modernes avec React et Next.js",
     "mobileDev": "Développement Mobile",
     "mobileDevDesc": "Applications mobiles natives avec React Native",
     "fullStack": "Full Stack",
-    "fullStackDesc": "Développement complet front-end et back-end"
+    "fullStackDesc": "Développement complet front-end et back-end",
+    "badge": "À propos de moi",
+    "profileName": "Etarcos Dev",
+    "profileHandle": "@socrateNz",
+    "githubLink": "GitHub",
+    "linkedinLink": "LinkedIn",
+    "achievements": {
+      "coffee": "Tasses de café",
+      "articles": "Articles techniques",
+      "projects": "Projets réalisés",
+      "coffeeValue": "1000+",
+      "articlesValue": "25+",
+      "projectsValue": "30+"
+    },
+    "journey": {
+      "title": "Mon Parcours",
+      "currentFocus": "Actuellement focus sur",
+      "timeline": {
+        "2023": {
+          "title": "Développeur Senior",
+          "company": "Tech Corp"
+        },
+        "2021": {
+          "title": "Développeur Full Stack",
+          "company": "StartUp Inc"
+        },
+        "2019": {
+          "title": "Développeur Junior",
+          "company": "Agence"
+        }
+      },
+      "focus": {
+        "ai": "Intégration IA",
+        "performance": "Performance",
+        "accessibility": "Accessibilité",
+        "web3": "Web3"
+      }
+    },
+    "techStack": {
+      "title": "Stack Technique",
+      "react": "React",
+      "typescript": "TypeScript",
+      "node": "Node.js",
+      "python": "Python"
+    },
+    "skills": {
+      "react": "React",
+      "typescript": "TypeScript",
+      "node": "Node.js",
+      "python": "Python"
+    }
   },
   "skills": {
     "title": "Mes Compétences",
@@ -41,12 +91,26 @@
     "mobile": "Mobile"
   },
   "projects": {
+    "badge": "Portfolio",
     "title": "Mes Projets",
-    "subtitle": "Découvrez quelques-unes de mes réalisations",
-    "project1Desc": "Plateforme e-commerce complète avec panier, paiement et gestion des commandes",
-    "project2Desc": "Application de gestion de tâches collaborative avec temps réel",
-    "project3Desc": "Application météo mobile avec géolocalisation et prévisions",
-    "liveDemo": "Démo"
+    "subtitle": "Découvrez mes derniers projets professionnels et personnels",
+    "code": "Code",
+    "liveDemo": "Démo Live",
+    "filters": {
+      "all": "Tous les Projets",
+      "featured": "En Vedette",
+      "technologies": "Technologies"
+    },
+    "stats": {
+      "total": "Projets Totaux",
+      "featured": "En Vedette",
+      "technologies": "Technologies"
+    },
+    "empty": {
+      "title": "Aucun projet trouvé",
+      "description": "Essayez d'ajuster vos filtres ou revenez plus tard."
+    },
+    "viewAll": "Voir Tous les Projets"
   },
   "contact": {
     "title": "Contactez-moi",

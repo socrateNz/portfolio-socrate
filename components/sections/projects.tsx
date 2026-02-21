@@ -5,10 +5,23 @@ import { useTranslations } from "next-intl"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github } from "lucide-react"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import {
+  ExternalLink,
+  Github,
+  Lock,
+  Sparkles,
+  FolderGit2,
+  Star,
+  GitFork,
+  Eye,
+  Calendar,
+  ArrowRight
+} from "lucide-react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface Project {
   _id: string
@@ -22,12 +35,21 @@ interface Project {
   private: boolean
   featured: boolean
   order: number
+  category?: string
+  stats?: {
+    stars?: number
+    forks?: number
+    views?: number
+  }
+  date?: string
 }
 
 export function Projects() {
   const t = useTranslations("projects")
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
+  const [filter, setFilter] = useState("all")
+  const [selectedTech, setSelectedTech] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -47,131 +69,46 @@ export function Projects() {
     fetchProjects()
   }, [])
 
-  // Fallback aux projets statiques si pas de données
-  // const fallbackProjects = [
-  //   {
-  //     title: "Tyju InfoSport",
-  //     tache: ["Analyse", "Frontend", "Intégration", "Refonte"],
-  //     description: t("project1Desc"),
-  //     image: "/placeholder.svg?height=200&width=300",
-  //     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Shadcn"],
-  //     githubUrl: "https://github.com",
-  //     liveUrl: "https://www.tyjuinfosport.com/",
-  //     private: true
-  //   },
-  //   {
-  //     title: "Krestdev",
-  //     tache: ["Frontend", "Backend", "Intégration", "Refonte"],
-  //     description: t("project2Desc"),
-  //     image: "/placeholder.svg?height=200&width=300",
-  //     technologies: ["NextJs", "Tailwind CSS", "Nodemail"],
-  //     githubUrl: "https://github.com",
-  //     liveUrl: "https://www.krestdev.com/",
-  //     private: true
-  //   },
-  //   {
-  //     title: "Fondation Jeanne Caroline Mfege",
-  //     tache: ["Frontend", "Refonte"],
-  //     description: t("project3Desc"),
-  //     image: "/placeholder.svg?height=200&width=300",
-  //     technologies: ["React", "Tailwind CSS"],
-  //     githubUrl: "https://github.com",
-  //     liveUrl: "https://www.fondationjeannecarolinemfege.org/fr/",
-  //     private: true
-  //   },
-  //   {
-  //     title: "CVGen Pro",
-  //     tache: ["Design", "Frontend", "Intégration", "Backend", "Refonte"],
-  //     description: t("project3Desc"),
-  //     image: "/placeholder.svg?height=200&width=300",
-  //     technologies: ["NextJs", "NodeJs", "NodeMail", "Tailwind CSS"],
-  //     githubUrl: "https://github.com",
-  //     liveUrl: "",
-  //     private: true
-  //   },
-  //   {
-  //     title: "Saga Africa",
-  //     tache: ["Frontend", "Refonte"],
-  //     description: t("project3Desc"),
-  //     image: "/placeholder.svg?height=200&width=300",
-  //     technologies: ["NextJs", "Tailwind CSS"],
-  //     githubUrl: "https://github.com",
-  //     liveUrl: "https://www.saga-africa.com/",
-  //     private: true
-  //   },
-  //   {
-  //     title: "Le Carino Pizzeria",
-  //     tache: ["Frontend", "Refonte"],
-  //     description: t("project3Desc"),
-  //     image: "/placeholder.svg?height=200&width=300",
-  //     technologies: ["NextJs", "Tailwind CSS"],
-  //     githubUrl: "https://github.com",
-  //     liveUrl: "https://www.le-carino.com/",
-  //     private: true
-  //   },
-  //   {
-  //     title: "Crea Consult",
-  //     tache: ["Frontend", "Refonte"],
-  //     description: t("project3Desc"),
-  //     image: "/placeholder.svg?height=200&width=300",
-  //     technologies: ["NextJs", "Tailwind CSS"],
-  //     githubUrl: "https://github.com",
-  //     liveUrl: "https://betcreaconsult.com/fr",
-  //     private: true
-  //   },
-  //   {
-  //     title: "Loumo Shop",
-  //     tache: ["Frontend", "Intégration", "Refonte",],
-  //     description: t("project3Desc"),
-  //     image: "/placeholder.svg?height=200&width=300",
-  //     technologies: ["NextJs", "Tailwind CSS"],
-  //     githubUrl: "https://github.com",
-  //     liveUrl: "https://home.loumoshop.com/",
-  //     private: true
-  //   },
-  //   {
-  //     title: "Krest Holding",
-  //     tache: ["Frontend", "Refonte",],
-  //     description: t("project3Desc"),
-  //     image: "/placeholder.svg?height=200&width=300",
-  //     technologies: ["NextJs", "Tailwind CSS"],
-  //     githubUrl: "https://github.com",
-  //     liveUrl: "https://www.krestholding.com/",
-  //     private: true
-  //   },
-
-  // ]
-
   const router = useRouter()
 
-  // const etarcosSold =
-  // {
-  //   title: "Etarcos Sold",
-  //   tache: ["Analyse", "Frontend", "Backend", "Intégration", "Refonte"],
-  //   description: "Application mobile(Android uniquement) permettant de gerer vos differents soldes de vos differents portefeuilles avec historiques des transactions",
-  //   image: "/etarcosold.webp",
-  //   technologies: ["React Native", "TypeScript", "Tailwind CSS", "Expo"],
-  //   githubUrl: "https://github.com",
-  //   liveUrl: "https://expo.dev/accounts/etarcos/projects/bolt-expo-nativewind/builds/477a69b1-3d4c-479a-8183-0347362fef86",
-  //   private: false
-  // }
+  // Extraire toutes les technologies uniques
+  const allTechnologies = Array.from(
+    new Set(projects.flatMap(p => p.technologies))
+  ).sort()
 
+  // Filtrer les projets
+  const filteredProjects = projects.filter(project => {
+    if (filter === "featured" && !project.featured) return false
+    if (selectedTech && !project.technologies.includes(selectedTech)) return false
+    return true
+  })
 
-  // Utiliser les projets de la base de données ou les projets de fallback
-  const displayProjects = projects.length > 0
-    ? projects : []
-  //  fallbackProjects
+  // Trier par ordre d'affichage
+  const sortedProjects = [...filteredProjects].sort((a, b) => a.order - b.order)
 
   if (loading) {
     return (
       <section id="projects" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("title")}</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("subtitle")}</p>
+          <div className="text-center mb-16">
+            <Skeleton className="h-10 w-64 mx-auto mb-4" />
+            <Skeleton className="h-6 w-96 mx-auto" />
           </div>
-          <div className="flex justify-center items-center py-20">
-            <div className="text-lg">Chargement des projets...</div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3].map((i) => (
+              <Card key={i} className="h-full">
+                <Skeleton className="h-48 w-full rounded-t-lg" />
+                <CardContent className="p-6">
+                  <Skeleton className="h-6 w-3/4 mb-2" />
+                  <Skeleton className="h-4 w-full mb-2" />
+                  <Skeleton className="h-4 w-2/3 mb-4" />
+                  <div className="flex gap-2">
+                    <Skeleton className="h-6 w-16" />
+                    <Skeleton className="h-6 w-16" />
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -179,76 +116,277 @@ export function Projects() {
   }
 
   return (
-    <section id="projects" className="py-20 bg-muted/30">
+    <section id="projects" className="py-20 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-40 left-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-40 right-20 w-72 h-72 bg-secondary/5 rounded-full blur-3xl"></div>
+      </div>
+
       <div className="container mx-auto px-4">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("title")}</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("subtitle")}</p>
+          <Badge variant="outline" className="mb-4 px-4 py-2">
+            <FolderGit2 className="h-4 w-4 mr-2 text-primary" />
+            {t("badge") || "Portfolio"}
+          </Badge>
+
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              {t("title")}
+            </span>
+          </h2>
+
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8">
+            {t("subtitle")}
+          </p>
+
+          {/* Stats */}
+          <div className="flex justify-center gap-8 mb-8">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary">{projects.length}</div>
+              <div className="text-sm text-muted-foreground">Total Projects</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary">
+                {projects.filter(p => p.featured).length}
+              </div>
+              <div className="text-sm text-muted-foreground">Featured</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary">
+                {allTechnologies.length}
+              </div>
+              <div className="text-sm text-muted-foreground">Technologies</div>
+            </div>
+          </div>
+
+          {/* Filters */}
+          <div className="space-y-4">
+            <Tabs defaultValue="all" className="w-full max-w-md mx-auto" onValueChange={setFilter}>
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="all">All Projects</TabsTrigger>
+                <TabsTrigger value="featured">Featured</TabsTrigger>
+              </TabsList>
+            </Tabs>
+
+            {/* Tech filters */}
+            <div className="flex flex-wrap gap-2 justify-center max-w-3xl mx-auto">
+              <Badge
+                variant={selectedTech === null ? "default" : "outline"}
+                className="cursor-pointer hover:scale-105 transition-transform"
+                onClick={() => setSelectedTech(null)}
+              >
+                All
+              </Badge>
+              {allTechnologies.slice(0, 8).map((tech) => (
+                <Badge
+                  key={tech}
+                  variant={selectedTech === tech ? "default" : "outline"}
+                  className="cursor-pointer hover:scale-105 transition-transform"
+                  onClick={() => setSelectedTech(selectedTech === tech ? null : tech)}
+                >
+                  {tech}
+                </Badge>
+              ))}
+              {allTechnologies.length > 8 && (
+                <Badge variant="outline" className="cursor-pointer">
+                  +{allTechnologies.length - 8}
+                </Badge>
+              )}
+            </div>
+          </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Projects grid */}
+        {sortedProjects.length === 0 ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-20"
+          >
+            <FolderGit2 className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
+            <h3 className="text-xl font-semibold mb-2">No projects found</h3>
+            <p className="text-muted-foreground">
+              Try adjusting your filters or check back later.
+            </p>
+          </motion.div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {sortedProjects.map((project, index) => (
+              <motion.div
+                key={project._id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8 }}
+                className="h-full"
+              >
+                <Card className="h-full hover:shadow-2xl transition-all duration-300 group overflow-hidden">
+                  {/* Image with overlay */}
+                  <CardHeader className="p-0 relative">
+                    <div className="relative overflow-hidden aspect-video">
+                      <Image
+                        src={project.image || "/placeholder-project.jpg"}
+                        alt={project.title}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-          {displayProjects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="h-full hover:shadow-lg transition-shadow group">
-                <CardHeader className="p-0">
-                  <div className="relative overflow-hidden rounded-t-lg">
-                    <Image
-                      src={project.image || "/placeholder.svg"}
-                      alt={project.title}
-                      width={300}
-                      height={200}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
-                  </div>
-                </CardHeader>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <div className="flex flex-row gap-2">
-                    {project.tache.map((tache, tacheIndex) => (
-                      <p key={tacheIndex} className="text-xs underline text-muted-foreground">
-                        {tache}
-                      </p>
-                    ))}
-                  </div>
-                  <p className="text-muted-foreground mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="outline" className="text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-                <CardFooter className="p-6 pt-0 flex gap-2">
-                  <Button onClick={() => router.push(project.githubUrl)} className={`${project.private && "cursor-not-allowed"}`} disabled={project.private} variant="outline" size="sm">
-                    <Github className="mr-2 h-4 w-4" />
-                    Code
-                  </Button>
-                  <Button size="sm" asChild>
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      {t("liveDemo")}
-                    </a>
-                  </Button>
-                </CardFooter>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+                      {/* Featured badge */}
+                      {project.featured && (
+                        <div className="absolute top-4 left-4">
+                          <Badge className="bg-primary/90 backdrop-blur-sm gap-1">
+                            <Sparkles className="h-3 w-3" />
+                            Featured
+                          </Badge>
+                        </div>
+                      )}
+
+                      {/* Private badge */}
+                      {project.private && (
+                        <div className="absolute top-4 right-4">
+                          <Badge variant="secondary" className="gap-1">
+                            <Lock className="h-3 w-3" />
+                            Private
+                          </Badge>
+                        </div>
+                      )}
+
+                      {/* Quick view overlay */}
+                      {/* <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <Button
+                          size="sm"
+                          variant="secondary"
+                          className="backdrop-blur-sm"
+                          onClick={() => router.push(`/projects/${project._id}`)}
+                        >
+                          <Eye className="h-4 w-4 mr-2" />
+                          Quick View
+                        </Button>
+                      </div> */}
+                    </div>
+                  </CardHeader>
+
+                  <CardContent className="p-6">
+                    {/* Title and tasks */}
+                    <div className="mb-3">
+                      <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h3>
+                      {project.tache && project.tache.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mb-2">
+                          {project.tache.map((tache, i) => (
+                            <span key={i} className="text-xs text-muted-foreground">
+                              {tache}{i < project.tache.length - 1 ? " • " : ""}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                      {project.description}
+                    </p>
+
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                        <Badge
+                          key={techIndex}
+                          variant="secondary"
+                          className="text-xs hover:bg-primary hover:text-primary-foreground transition-colors cursor-default"
+                        >
+                          {tech}
+                        </Badge>
+                      ))}
+                      {project.technologies.length > 4 && (
+                        <Badge variant="outline" className="text-xs">
+                          +{project.technologies.length - 4}
+                        </Badge>
+                      )}
+                    </div>
+
+                    {/* Project stats (optional) */}
+                    {project.stats && (
+                      <div className="flex gap-3 text-xs text-muted-foreground mb-4">
+                        {project.stats.stars && (
+                          <div className="flex items-center gap-1">
+                            <Star className="h-3 w-3" />
+                            {project.stats.stars}
+                          </div>
+                        )}
+                        {project.stats.forks && (
+                          <div className="flex items-center gap-1">
+                            <GitFork className="h-3 w-3" />
+                            {project.stats.forks}
+                          </div>
+                        )}
+                        {project.date && (
+                          <div className="flex items-center gap-1">
+                            <Calendar className="h-3 w-3" />
+                            {project.date}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </CardContent>
+
+                  <CardFooter className="p-6 pt-0 flex gap-2">
+                    <Button
+                      onClick={() => router.push(project.githubUrl)}
+                      disabled={project.private}
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 group/btn"
+                    >
+                      <Github className="mr-2 h-4 w-4 group-hover/btn:rotate-12 transition-transform" />
+                      {t("code") || "Code"}
+                    </Button>
+
+                    {project.liveUrl && (
+                      <Button
+                        size="sm"
+                        className="flex-1 group/btn"
+                        asChild
+                      >
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="mr-2 h-4 w-4 group-hover/btn:scale-110 transition-transform" />
+                          {t("liveDemo")}
+                        </a>
+                      </Button>
+                    )}
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        {/* View all link */}
+        {/* {sortedProjects.length > 6 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <Button variant="outline" size="lg" className="group">
+              View All Projects
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </motion.div>
+        )} */}
       </div>
     </section>
   )

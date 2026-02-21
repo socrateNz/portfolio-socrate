@@ -42,7 +42,11 @@ export function Footer() {
           className="text-center space-y-8"
         >
           <div>
-            <h3 className="text-2xl font-bold mb-4">{t("title")}</h3>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                {t("title")}
+              </span>
+            </h2>
             <p className="text-muted-foreground max-w-md mx-auto">{t("description")}</p>
           </div>
 
