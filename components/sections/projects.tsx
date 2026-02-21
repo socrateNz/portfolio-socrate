@@ -22,6 +22,7 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
+import { QuickView } from "../QuickView"
 
 interface Project {
   _id: string
@@ -50,6 +51,8 @@ export function Projects() {
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState("all")
   const [selectedTech, setSelectedTech] = useState<string | null>(null)
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -70,6 +73,11 @@ export function Projects() {
   }, [])
 
   const router = useRouter()
+
+  const handleSelected = (project: Project) => {
+    setSelectedProject(project)
+    setOpen(true)
+  }
 
   // Extraire toutes les technologies uniques
   const allTechnologies = Array.from(
@@ -262,17 +270,17 @@ export function Projects() {
                       )}
 
                       {/* Quick view overlay */}
-                      {/* <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <Button
                           size="sm"
                           variant="secondary"
                           className="backdrop-blur-sm"
-                          onClick={() => router.push(`/projects/${project._id}`)}
+                          onClick={() => handleSelected(project)}
                         >
                           <Eye className="h-4 w-4 mr-2" />
                           Quick View
                         </Button>
-                      </div> */}
+                      </div>
                     </div>
                   </CardHeader>
 
@@ -388,6 +396,7 @@ export function Projects() {
           </motion.div>
         )} */}
       </div>
+      <QuickView project={selectedProject} isOpen={open} onClose={() => setOpen(false)} />
     </section>
   )
 }
