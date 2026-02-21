@@ -7,13 +7,16 @@ const withNextIntl = createNextIntlPlugin({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  // eslint: {  ← À SUPPRIMER complètement
+  //   ignoreDuringBuilds: true,
+  // },
   typescript: {
     ignoreBuildErrors: true,
   },
-  images: { unoptimized: true, domains: [] },
+  images: {
+    unoptimized: true,
+    domains: []
+  },
 }
 
 export default withNextIntl(nextConfig)
