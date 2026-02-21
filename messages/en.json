@@ -7,14 +7,17 @@
     "contact": "Contact"
   },
   "hero": {
+    "available": "Open to work • Available now",
     "title": "NZOGNING MBONDA Socrate",
-    "subtitle": "Creator of modern digital experiences",
+    "subtitle1": "who turns coffee",
+    "subtitle2": "into code",
     "description": "Passionate about web and mobile development, I create performant and intuitive applications with the latest technologies.",
-    "contactButton": "Contact me",
-    "projectsButton": "View my projects",
-    "projects": "My projects",
-    "base": "Based in Douala, Cameroon",
-    "availability": "Available for freelance work"
+    "seeButton": "See my work",
+    "year": "Years coding",
+    "project": "Projects shipped",
+    "debug": "Lines of debug",
+    "availability": "Available for opportunities and freelances",
+    "starting": "Starting November 2021"
   },
   "about": {
     "title": "About me",
