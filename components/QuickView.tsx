@@ -23,7 +23,8 @@ import {
     ArrowRight,
     Star,
     GitFork,
-    Eye
+    Eye,
+    Database
 } from "lucide-react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
@@ -101,7 +102,7 @@ export function QuickView({ project, isOpen, onClose }: QuickViewProps) {
         <AnimatePresence>
             {isOpen && (
                 <Dialog open={isOpen} onOpenChange={onClose}>
-                    <DialogContent className="max-w-5xl h-[90vh] p-0 overflow-hidden bg-background/95 backdrop-blur-xl">
+                    <DialogContent className="max-w-5xl h-[90vh] p-0 overflow-auto bg-background/95 backdrop-blur-xl">
                         <DialogHeader className="sr-only">
                             <DialogTitle>{project.title}</DialogTitle>
                             <DialogDescription>{project.description}</DialogDescription>
@@ -186,7 +187,7 @@ export function QuickView({ project, isOpen, onClose }: QuickViewProps) {
 
                             {/* Content */}
                             <ScrollArea className="flex-1 p-6">
-                                <div className="space-y-6">
+                                <div className="space-y-6 relative">
                                     {/* Header */}
                                     <div>
                                         <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
@@ -281,16 +282,22 @@ export function QuickView({ project, isOpen, onClose }: QuickViewProps) {
 
                                         <TabsContent value="challenges" className="pt-4">
                                             <div className="space-y-6">
-                                                {project.challenges && project.challenges.length > 0 && (
-                                                    <div>
-                                                        <h4 className="font-semibold mb-3">Challenges Faced</h4>
-                                                        <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                                                            {project.challenges.map((challenge, index) => (
-                                                                <li key={index}>{challenge}</li>
-                                                            ))}
-                                                        </ul>
+                                                {project.challenges ?
+                                                    project.challenges.length > 0 && (
+                                                        <div>
+                                                            <h4 className="font-semibold mb-3">Challenges Faced</h4>
+                                                            <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                                                                {project.challenges.map((challenge, index) => (
+                                                                    <li key={index}>{challenge}</li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    ) :
+                                                    <div className="text-gray-400 flex flex-col gap-2 items-center justify-center">
+                                                        <Database size={32} />
+                                                        <p>{"Aucun challenge pour ce projet"}</p>
                                                     </div>
-                                                )}
+                                                }
 
                                                 {project.solutions && project.solutions.length > 0 && (
                                                     <div>
@@ -339,45 +346,30 @@ export function QuickView({ project, isOpen, onClose }: QuickViewProps) {
                                     </Tabs>
 
                                     {/* Links */}
-                                    <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                                        <Button
-                                            className="flex-1 group"
-                                            disabled={project.private}
-                                            onClick={() => window.open(project.githubUrl, '_blank')}
-                                        >
-                                            <Github className="mr-2 h-4 w-4 group-hover:rotate-12 transition-transform" />
-                                            View Source Code
-                                            {project.private && <Lock className="ml-2 h-4 w-4" />}
-                                        </Button>
-
-                                        {project.liveUrl && (
-                                            <Button
-                                                variant="default"
-                                                className="flex-1 group"
-                                                onClick={() => window.open(project.liveUrl, '_blank')}
-                                            >
-                                                <ExternalLink className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                                                Live Demo
-                                            </Button>
-                                        )}
-                                    </div>
-
-                                    {/* View full details link */}
-                                    <div className="text-center pt-2">
-                                        <Button
-                                            variant="link"
-                                            className="group"
-                                            onClick={() => {
-                                                onClose()
-                                                router.push(`/projects/${project._id}`)
-                                            }}
-                                        >
-                                            View Full Project Details
-                                            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                                        </Button>
-                                    </div>
                                 </div>
                             </ScrollArea>
+                            <div className="flex flex-col sm:flex-row gap-3 pt-4 sticky bottom-0 bg-background/95 p-4">
+                                <Button
+                                    className="flex-1 group"
+                                    disabled={project.private}
+                                    onClick={() => window.open(project.githubUrl, '_blank')}
+                                >
+                                    <Github className="mr-2 h-4 w-4 group-hover:rotate-12 transition-transform" />
+                                    View Source Code
+                                    {project.private && <Lock className="ml-2 h-4 w-4" />}
+                                </Button>
+
+                                {project.liveUrl && (
+                                    <Button
+                                        variant="default"
+                                        className="flex-1 group"
+                                        onClick={() => window.open(project.liveUrl, '_blank')}
+                                    >
+                                        <ExternalLink className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
+                                        Live Demo
+                                    </Button>
+                                )}
+                            </div>
                         </div>
                     </DialogContent>
                 </Dialog>
