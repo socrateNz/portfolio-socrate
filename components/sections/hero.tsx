@@ -139,7 +139,7 @@ export function Hero() {
             </Button>
 
             <Button variant="outline" size="lg" className="group" asChild>
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/socrateNz" target="_blank" rel="noopener noreferrer">
                 <Github className="mr-2 h-4 w-4 group-hover:rotate-12 transition-transform" />
                 GitHub
               </a>

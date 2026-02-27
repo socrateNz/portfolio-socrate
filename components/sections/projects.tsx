@@ -159,19 +159,19 @@ export function Projects() {
           <div className="flex justify-center gap-8 mb-8">
             <div className="text-center">
               <div className="text-3xl font-bold text-primary">{projects.length}</div>
-              <div className="text-sm text-muted-foreground">Total Projects</div>
+              <div className="text-sm text-muted-foreground">{t("filters.all")}</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-primary">
                 {projects.filter(p => p.featured).length}
               </div>
-              <div className="text-sm text-muted-foreground">Featured</div>
+              <div className="text-sm text-muted-foreground">{t("filters.featured")}</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-primary">
                 {allTechnologies.length}
               </div>
-              <div className="text-sm text-muted-foreground">Technologies</div>
+              <div className="text-sm text-muted-foreground">{t("filters.technologies")}</div>
             </div>
           </div>
 
@@ -179,8 +179,8 @@ export function Projects() {
           <div className="space-y-4">
             <Tabs defaultValue="all" className="w-full max-w-md mx-auto" onValueChange={setFilter}>
               <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="all">All Projects</TabsTrigger>
-                <TabsTrigger value="featured">Featured</TabsTrigger>
+                <TabsTrigger value="all">{t("filters.all")}</TabsTrigger>
+                <TabsTrigger value="featured">{t("filters.featured")}</TabsTrigger>
               </TabsList>
             </Tabs>
 
