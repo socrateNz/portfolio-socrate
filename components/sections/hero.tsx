@@ -14,20 +14,23 @@ import {
 import { useTranslations } from "next-intl";
 
 export function Hero() {
+
   const t = useTranslations("hero");
-
-  const techStack = [
-    { name: "React", icon: "⚛️", color: "from-cyan-500 to-blue-500" },
-    { name: "Node.js", icon: "🟢", color: "from-green-500 to-emerald-500" },
-    { name: "TypeScript", icon: "📘", color: "from-blue-500 to-indigo-500" },
-    { name: "Python", icon: "🐍", color: "from-yellow-500 to-amber-500" },
-  ];
-
-  const stats = [
-    { value: "5+", label: t("year"), icon: <Code2 className="h-4 w-4" /> },
-    { value: "30+", label: t("project"), icon: <Cpu className="h-4 w-4" /> },
-    { value: "∞", label: t("debug"), icon: <Terminal className="h-4 w-4" /> },
-  ];
+  // Vos informations personnelles (basées sur votre code)
+  const personalInfo = {
+    name: "socrateNz",
+    role: "full stack developer",
+    location: "Paris",
+    github: "socrateNz",
+    techStack: [
+      { name: "React", icon: "⚛️", color: "from-cyan-500 to-blue-500" },
+      { name: "Node.js", icon: "🟢", color: "from-green-500 to-emerald-500" },
+      { name: "TypeScript", icon: "📘", color: "from-blue-500 to-indigo-500" },
+      { name: "Python", icon: "🐍", color: "from-yellow-500 to-amber-500" },
+    ],
+    availability: "Available for work",
+    startingFrom: "Starting March 2026"
+  };
 
   return (
     <section
@@ -45,11 +48,21 @@ export function Hero() {
 
       <div className="container mx-auto px-4 relative">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
+          {/* BlackOrange Brand */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            className="mb-8"
+          >
+            <h2 className="text-3xl font-bold text-primary">@{personalInfo.github}</h2>
+          </motion.div>
+
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full border bg-background/50 backdrop-blur-sm mb-8"
           >
             <Sparkles className="h-4 w-4 text-primary" />
@@ -64,13 +77,11 @@ export function Hero() {
           >
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6">
               <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-                {t("title")}
+                {t("subtitle1")}
               </span>
               <br />
-              <span className="text-foreground">{t("subtitle1")}</span>
-              <br />
               <span className="relative">
-                {t("subtitle2")}
+                <span className="text-foreground">{t("subtitle2")}</span>
                 <motion.span
                   animate={{ opacity: [1, 0, 1] }}
                   transition={{ repeat: Infinity, duration: 1.5 }}
@@ -89,7 +100,7 @@ export function Hero() {
             transition={{ delay: 0.4 }}
             className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8"
           >
-            {t("description") || "Full-stack developer crafting robust web applications with clean code and exceptional user experiences."}
+            {t("description")}
           </motion.p>
 
           {/* Tech stack pills */}
@@ -99,7 +110,7 @@ export function Hero() {
             transition={{ delay: 0.6 }}
             className="flex flex-wrap gap-3 justify-center mb-10"
           >
-            {techStack.map((tech, index) => (
+            {personalInfo.techStack.map((tech, index) => (
               <motion.div
                 key={tech.name}
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -139,35 +150,11 @@ export function Hero() {
             </Button>
 
             <Button variant="outline" size="lg" className="group" asChild>
-              <a href="https://github.com/socrateNz" target="_blank" rel="noopener noreferrer">
+              <a href={`https://github.com/${personalInfo.github}`} target="_blank" rel="noopener noreferrer">
                 <Github className="mr-2 h-4 w-4 group-hover:rotate-12 transition-transform" />
                 GitHub
               </a>
             </Button>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto mb-8"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.1 + index * 0.1 }}
-                className="p-4 rounded-xl border bg-background/50 backdrop-blur-sm hover:border-primary/50 transition-colors"
-              >
-                <div className="flex items-center justify-center gap-2 text-primary mb-2">
-                  {stat.icon}
-                  <span className="text-2xl font-bold">{stat.value}</span>
-                </div>
-                <p className="text-sm text-muted-foreground">{stat.label}</p>
-              </motion.div>
-            ))}
           </motion.div>
 
           {/* Availability and location */}
@@ -182,14 +169,14 @@ export function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
               </span>
-              <span>{t("availability")}</span>
+              <span>{personalInfo.availability}</span>
             </div>
 
             <div className="hidden sm:block">•</div>
 
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4" />
-              <span>{t("starting")}</span>
+              <span>{personalInfo.startingFrom}</span>
             </div>
           </motion.div>
         </div>

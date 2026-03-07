@@ -379,22 +379,6 @@ export function Projects() {
             ))}
           </div>
         )}
-
-        {/* View all link */}
-        {/* {sortedProjects.length > 6 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mt-12"
-          >
-            <Button variant="outline" size="lg" className="group">
-              View All Projects
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </motion.div>
-        )} */}
       </div>
       <QuickView project={selectedProject} isOpen={open} onClose={() => setOpen(false)} />
     </section>
