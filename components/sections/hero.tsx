@@ -28,8 +28,8 @@ export function Hero() {
       { name: "TypeScript", icon: "📘", color: "from-blue-500 to-indigo-500" },
       { name: "Python", icon: "🐍", color: "from-yellow-500 to-amber-500" },
     ],
-    availability: "Available for work",
-    startingFrom: "Starting March 2026"
+    availability: t("available"),
+    startingFrom: t("starting")
   };
 
   return (
