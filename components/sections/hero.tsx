@@ -1,206 +1,162 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import {
-  ArrowDown,
-  Github,
-  Code2,
-  Terminal,
-  Cpu,
-  Sparkles,
-  Calendar
-} from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Twitter } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 export function Hero() {
-
   const t = useTranslations("hero");
-  // Vos informations personnelles (basées sur votre code)
-  const personalInfo = {
-    name: "socrateNz",
-    role: "full stack developer",
-    location: "Paris",
-    github: "socrateNz",
-    techStack: [
-      { name: "React", icon: "⚛️", color: "from-cyan-500 to-blue-500" },
-      { name: "Node.js", icon: "🟢", color: "from-green-500 to-emerald-500" },
-      { name: "TypeScript", icon: "📘", color: "from-blue-500 to-indigo-500" },
-      { name: "Python", icon: "🐍", color: "from-yellow-500 to-amber-500" },
-    ],
-    availability: t("available"),
-    startingFrom: t("starting")
-  };
+
+  const socialLinks = [
+    {
+      icon: Twitter,
+      href: "https://x.com/socrateNz",
+      label: "X / Twitter",
+    },
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/socrate-nzogning-mbonda/?skipRedirect=true",
+      label: "LinkedIn",
+    },
+    {
+      icon: Github,
+      href: "https://github.com/socrateNz",
+      label: "GitHub",
+    },
+  ];
 
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-background via-background to-primary/5 pt-5"
+      className="max-w-[1440px] w-full mx-auto relative min-h-[80vh] h-full overflow-hidden bg-[#0d0d0d] rounded-3xl mt-20"
     >
-      {/* Animated background elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-
-        {/* Grid overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+      {/* Radial purple glow behind photo */}
+      <div
+        className="absolute inset-0 flex items-center justify-center pointer-events-none"
+        aria-hidden="true"
+      >
+        <div
+          style={{
+            width: "700px",
+            height: "700px",
+            background:
+              "radial-gradient(circle, rgba(120,60,200,0.35) 0%, rgba(80,30,140,0.15) 45%, transparent 72%)",
+            borderRadius: "50%",
+          }}
+        />
       </div>
 
-      <div className="container mx-auto px-4 relative">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* BlackOrange Brand */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-8"
-          >
-            <h2 className="text-3xl font-bold text-primary">@{personalInfo.github}</h2>
-          </motion.div>
+      {/* Giant name — background typographic layer */}
+      <div
+        className="absolute inset-0 flex mt-20 justify-center pointer-events-none select-none overflow-hidden"
+        aria-hidden="true"
+      >
+        <h1
+          style={{
+            fontSize: "clamp(3rem, 15vw, 15rem)",
+            fontWeight: 900,
+            lineHeight: 0.9,
+            color: "white",
+            letterSpacing: "-0.04em",
+            whiteSpace: "nowrap",
+            fontFamily: "'Inter', 'Arial Black', sans-serif",
+            textAlign: "center",
+          }}
+        >
+          Etarcos{"\n"}Dev
+        </h1>
+      </div>
 
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border bg-background/50 backdrop-blur-sm mb-8"
-          >
-            <Sparkles className="h-4 w-4 text-primary" />
-            <span className="text-sm font-medium">{t("available")}</span>
-          </motion.div>
+      {/* Hero photo — middle layer */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, ease: "easeOut" }}
+        className="absolute inset-x-0 bottom-0 flex justify-center pointer-events-none"
+        style={{ zIndex: 10 }}
+      >
+        <div
+          style={{
+            position: "relative",
+            width: "clamp(260px, 70vw, 900px)",
+            height: "clamp(320px, 90vh, 1000px)",
+          }}
+        >
+          <Image
+            src="/assets/hero.png"
+            alt="Etarcos Dev - Full Stack Developer"
+            fill
+            style={{ objectFit: "contain", objectPosition: "bottom center" }}
+            priority
+          />
+        </div>
+      </motion.div>
 
-          {/* Main title */}
+      {/* UI overlay — top layer */}
+      <div
+        className="relative flex flex-col justify-between min-h-screen p-8 md:p-12"
+        style={{ zIndex: 20 }}
+      >
+        {/* Top spacer (fixed nav above) */}
+        <div />
+
+        {/* Bottom content row */}
+        <div className="flex flex-col sm:flex-row items-end justify-between gap-6 pb-20">
+          {/* Left — description + social icons */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="max-w-xs"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-                {t("subtitle1")}
-              </span>
-              <br />
-              <span className="relative">
-                <span className="text-foreground">{t("subtitle2")}</span>
-                <motion.span
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{ repeat: Infinity, duration: 1.5 }}
-                  className="absolute -right-4 bottom-0 text-primary"
+            <p className="text-white text-sm leading-relaxed mb-6">
+              {t("description")}
+            </p>
+
+            <div className="flex items-center gap-3">
+              {socialLinks.map((social) => (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  whileHover={{ scale: 1.12 }}
+                  whileTap={{ scale: 0.93 }}
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-primary hover:bg-primary/80 text-white transition-colors duration-200"
                 >
-                  _
-                </motion.span>
-              </span>
-            </h1>
-          </motion.div>
-
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8"
-          >
-            {t("description")}
-          </motion.p>
-
-          {/* Tech stack pills */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="flex flex-wrap gap-3 justify-center mb-10"
-          >
-            {personalInfo.techStack.map((tech, index) => (
-              <motion.div
-                key={tech.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.7 + index * 0.1 }}
-                className="group relative"
-              >
-                <div className={`absolute inset-0 bg-gradient-to-r ${tech.color} rounded-full blur opacity-0 group-hover:opacity-50 transition-opacity`}></div>
-                <div className="relative px-4 py-2 rounded-full border bg-background/80 backdrop-blur-sm hover:border-primary transition-colors flex items-center gap-2">
-                  <span>{tech.icon}</span>
-                  <span className="text-sm font-medium">{tech.name}</span>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
-          >
-            <Button size="lg" className="group relative overflow-hidden" asChild>
-              <a href="#projects">
-                <span className="relative z-10 flex items-center">
-                  <Code2 className="mr-2 h-4 w-4 group-hover:rotate-12 transition-transform" />
-                  {t("seeButton")}
-                </span>
-                <motion.div
-                  className="absolute inset-0 bg-primary"
-                  initial={{ x: "100%" }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </a>
-            </Button>
-
-            <Button variant="outline" size="lg" className="group" asChild>
-              <a href={`https://github.com/${personalInfo.github}`} target="_blank" rel="noopener noreferrer">
-                <Github className="mr-2 h-4 w-4 group-hover:rotate-12 transition-transform" />
-                GitHub
-              </a>
-            </Button>
-          </motion.div>
-
-          {/* Availability and location */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center text-sm text-muted-foreground"
-          >
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full border bg-background/50">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
-              </span>
-              <span>{personalInfo.availability}</span>
+                  <social.icon className="w-4 h-4" />
+                </motion.a>
+              ))}
             </div>
+          </motion.div>
 
-            <div className="hidden sm:block">•</div>
+          {/* Right — tagline + CTA button */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.6 }}
+            className="max-w-xs text-right"
+          >
+            <p className="text-white text-sm leading-relaxed mb-5">
+              {t("subtitle1")} {t("subtitle2")}
+              {/* <span className="text-white/90">{t("subtitle2")}</span> */}
+            </p>
 
-            <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4" />
-              <span>{personalInfo.startingFrom}</span>
-            </div>
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.96 }}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-primary hover:bg-primary/80 text-white text-sm font-semibold transition-colors duration-200"
+            >
+              {t("contactButton") || "Let's Talk"}
+              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-white/20">
+                <ArrowUpRight className="w-3 h-3" />
+              </span>
+            </motion.a>
           </motion.div>
         </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.8 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-            className="cursor-pointer"
-            onClick={() => {
-              document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-          >
-            <div className="p-2 rounded-full border bg-background/50 backdrop-blur-sm hover:border-primary transition-colors">
-              <ArrowDown className="h-5 w-5 text-muted-foreground" />
-            </div>
-          </motion.div>
-        </motion.div>
       </div>
     </section>
   );

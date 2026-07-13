@@ -35,15 +35,13 @@ export function Navigation() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/80 backdrop-blur-md shadow-lg" : "bg-transparent"
-      }`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-background/80 backdrop-blur-md shadow-lg" : "bg-transparent"
+        }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex">
-            <img src="/logo.png" alt="Portfolio" className="h-[60px]" />
-            <p className="text-3xl font-bold hidden md:flex items-center text-[#007CFF]">Etarcos Dev</p>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2">
+            <img src="/assets/logo.png" alt="Etarcos Dev Logo" className="h-[40px] w-auto" />
           </motion.div>
 
           {/* Desktop Navigation */}
