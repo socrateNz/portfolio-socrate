@@ -74,7 +74,7 @@ export function Hero() {
         style={{ zIndex: 10 }}
       >
         <div
-          className="relative w-[clamp(260px,60vw,900px)] h-[50vh] sm:h-[60vh] md:h-[clamp(320px,83vh,1000px)]"
+          className="relative w-[clamp(260px,60vw,900px)] h-[40vh] sm:h-[50vh] md:h-[clamp(290px,65vh,880px)]"
         >
           <Image
             src="/assets/hero.png"
