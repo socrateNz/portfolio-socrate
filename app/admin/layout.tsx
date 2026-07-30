@@ -1,10 +1,13 @@
- 
-export default function Layout({ children }: { children: React.ReactNode }) {
-    return (
-        <html>
-            <body>
-                {children}
-            </body>
-        </html>
-    )
-    }
+"use client"
+
+import * as React from "react"
+import { Toaster } from "@/components/ui/toaster"
+
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      {children}
+      <Toaster />
+    </>
+  )
+}
