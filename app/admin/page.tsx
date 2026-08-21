@@ -12,6 +12,7 @@ import { HomeDashboardView } from "@/components/admin/HomeDashboardView"
 import { AnalyticsView } from "@/components/admin/AnalyticsView"
 import { ProjectsView } from "@/components/admin/ProjectsView"
 import { GithubHubView } from "@/components/admin/GithubHubView"
+import { GithubContributionsView } from "@/components/admin/GithubContributionsView"
 import { AiInsightsView } from "@/components/admin/AiInsightsView"
 import { MessagesView } from "@/components/admin/MessagesView"
 import { CvCertificationsView } from "@/components/admin/CvCertificationsView"
@@ -48,6 +49,8 @@ export default function AdminDashboardPage() {
         return <ProjectsView />
       case "github":
         return <GithubHubView />
+      case "github-contributions":
+        return <GithubContributionsView />
       case "ai-insights":
         return <AiInsightsView />
       case "messages":

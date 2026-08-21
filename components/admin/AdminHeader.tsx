@@ -45,6 +45,7 @@ const TAB_TITLES: Record<string, { title: string; category: string }> = {
   analytics: { title: "Analytics & Telemetry", category: "Performances" },
   projects: { title: "Projets & Réalisations", category: "Portfolio" },
   github: { title: "Panneau GitHub Telemetry", category: "Code & Activity" },
+  "github-contributions": { title: "Rapport d'Activité GitHub", category: "Code & Activity" },
   "ai-insights": { title: "AI Copilot & Portfolio Insights", category: "Intelligence" },
   messages: { title: "Messages Recruteurs & Contacts", category: "Communications" },
   cv: { title: "CV Executive & Certifications", category: "Compétences" },

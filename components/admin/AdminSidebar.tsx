@@ -49,6 +49,7 @@ const NAV_GROUPS: { groupName: string; items: NavItem[] }[] = [
       { id: "analytics", label: "Analytics", icon: BarChart3, color: "text-sky-500" },
       { id: "projects", label: "Projets", icon: FolderGit2, color: "text-emerald-500", badge: "28" },
       { id: "github", label: "GitHub Hub", icon: Github, color: "text-purple-500" },
+      { id: "github-contributions", label: "Contributions GitHub", icon: Activity, color: "text-fuchsia-500" },
       { id: "ai-insights", label: "AI Insights", icon: Sparkles, color: "text-amber-500", badge: "AI" },
     ],
   },

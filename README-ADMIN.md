@@ -28,7 +28,22 @@ JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 CLOUDINARY_CLOUD_NAME=your-cloud-name
 CLOUDINARY_API_KEY=your-api-key
 CLOUDINARY_API_SECRET=your-api-secret
+
+# GitHub
+GITHUB_USERNAME=your-github-username
+GITHUB_TOKEN=your-github-personal-access-token
 ```
+
+### GitHub — module "Contributions GitHub"
+
+`GITHUB_USERNAME` seul suffit pour le panneau "GitHub Hub" existant (profil, repos, calendrier — avec repli automatique sur une API publique si aucun token n'est fourni).
+
+Le module complémentaire "Contributions GitHub" (rapport d'activité par type et par repository, export CSV/Excel) a en revanche besoin de `GITHUB_TOKEN` pour fonctionner, car il interroge l'API GraphQL de GitHub (aucun repli public n'existe pour ces données) :
+
+1. Générez un **Personal Access Token classique** sur [github.com/settings/tokens](https://github.com/settings/tokens), avec les scopes `repo` (pour inclure les contributions sur les dépôts privés) et `read:user`.
+2. Ajoutez-le dans `.env.local` : `GITHUB_TOKEN=ghp_...`
+3. Sans ce token, le module affiche un message d'avertissement clair (HTTP 503) au lieu de planter — le reste du dashboard continue de fonctionner normalement.
+4. Ce token n'est **jamais exposé côté client** : il n'est lu que dans les routes serveur `app/api/github/contributions/route.ts` (analyse) et n'est pas nécessaire pour l'export (`app/api/github/contributions/export/route.ts` reçoit uniquement les données déjà analysées).
 
 ### 2. Installation des dépendances
 

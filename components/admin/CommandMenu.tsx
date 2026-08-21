@@ -7,6 +7,7 @@ import {
   BarChart3,
   FolderGit2,
   Github,
+  Activity,
   Sparkles,
   Mail,
   FileBadge,
@@ -100,6 +101,14 @@ export function CommandMenu({ open, setOpen, onNavigate }: CommandMenuProps) {
             <Github className="h-4 w-4 text-purple-500" />
             <span>Panneau GitHub Telemetry</span>
             <CommandShortcut>⌘G</CommandShortcut>
+          </CommandItem>
+
+          <CommandItem
+            onSelect={() => runCommand(() => onNavigate("github-contributions"))}
+            className="flex items-center gap-2 cursor-pointer rounded-lg p-2 text-sm"
+          >
+            <Activity className="h-4 w-4 text-fuchsia-500" />
+            <span>Rapport d'Activité GitHub (Contributions)</span>
           </CommandItem>
 
           <CommandItem
