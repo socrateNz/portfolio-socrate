@@ -11,7 +11,7 @@
     "title": "NZOGNING MBONDA Socrate",
     "subtitle1": "Qui transforme le café",
     "subtitle2": "en code",
-    "description": "Je suis Nzogning Monda Socrate, passionné par le développement web et mobile, je crée des applications performantes et intuitives avec les technologies les plus récentes.",
+    "description": "Je suis Nzogning Mbonda Socrate, passionné par le développement web et mobile, je crée des applications performantes et intuitives avec les technologies les plus récentes.",
     "seeButton": "Voir mes projets",
     "year": "Années de code",
     "project": "Projets livrés",
@@ -136,5 +136,102 @@
     "title": "Travaillons ensemble",
     "description": "Prêt à donner vie à vos idées ? Contactez-moi pour discuter de votre prochain projet.",
     "rights": "Tous droits réservés."
+  },
+  "site": {
+    "nav": {
+      "home": "Accueil",
+      "about": "Profil",
+      "projects": "Projets",
+      "skills": "Compétences",
+      "contact": "Contact",
+      "menuCta": "Me contacter",
+      "tagline": "Développeur Web & Mobile"
+    },
+    "hero": {
+      "description": "Qui transforme le café en code.",
+      "services": [
+        "Développement Web",
+        "Applications Mobiles",
+        "APIs & Back-end",
+        "UI / Intégration"
+      ]
+    },
+    "stack": {
+      "label": "Stack technique :"
+    },
+    "intro": {
+      "subtitle": "Porté par le code — ",
+      "textStrong": "Je conçois des expériences web et mobiles qui aident",
+      "textMuted": "les marques et les idées à se démarquer™.",
+      "description": "En combinant stratégie, design et technologie, je transforme des idées en produits numériques utiles. Mon travail allie imagination et précision pour créer des applications rapides, robustes et agréables à utiliser.",
+      "primary": "Mon parcours",
+      "secondary": "Me contacter"
+    },
+    "projects": {
+      "subtitle": "Mon portfolio — ",
+      "title1": "Travaux",
+      "title2": "choisis©",
+      "all": "Tout voir sur GitHub",
+      "empty": "Aucun projet pour le moment.",
+      "private": "Privé"
+    },
+    "about": {
+      "subtitle": "Pourquoi moi — ",
+      "title1": "Choisir",
+      "title2": "l'excellence",
+      "cta": "Me contacter",
+      "since": "(2022-26©)",
+      "stat1Label": "Projets réalisés\navec succès",
+      "stat1Text": "Depuis plusieurs années, je conçois des applications web et mobiles.",
+      "stat1Muted": "Chaque projet s'appuie sur des compétences solides, une méthode et de la créativité.",
+      "stat2Label": "Années\nd'expérience",
+      "stat2Text": "Je mesure la réussite à l'impact créé.",
+      "stat2Muted": "Mes clients me font confiance pour livrer des solutions qui dépassent leurs attentes."
+    },
+    "skills": {
+      "subtitle": "Mes compétences — ",
+      "title1": "Solutions",
+      "title2": "créatives",
+      "cta": "Voir les projets",
+      "items": [
+        {
+          "title": "Frontend",
+          "text": "Interfaces rapides et accessibles avec React, Next.js, TypeScript et Tailwind CSS."
+        },
+        {
+          "title": "Backend",
+          "text": "APIs robustes avec Node.js, Express, MongoDB et PostgreSQL."
+        },
+        {
+          "title": "Mobile",
+          "text": "Applications natives multiplateformes avec React Native, Expo et Flutter."
+        },
+        {
+          "title": "Outils",
+          "text": "Un workflow soigné : Git, GitHub, Docker, Figma et VS Code."
+        }
+      ]
+    },
+    "contact": {
+      "subtitle": "Contact — ",
+      "title1": "Travaillons",
+      "title2": "ensemble",
+      "cardTitle": "Parlons de\nvotre projet...",
+      "cardText": "Une idée, un projet, une opportunité ? Écrivez-moi et je vous répondrai rapidement.",
+      "name": "Nom",
+      "email": "Email",
+      "message": "Message",
+      "send": "Envoyer le message",
+      "sending": "Envoi...",
+      "role": "Développeur Full Stack",
+      "location": "Douala, Cameroun"
+    },
+    "footer": {
+      "navigation": "Navigation",
+      "socials": "Réseaux",
+      "rights": "Tous droits réservés",
+      "top": "Haut de page",
+      "builtWith": "Conçu avec Next.js"
+    }
   }
 }

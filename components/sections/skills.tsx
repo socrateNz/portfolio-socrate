@@ -1,95 +1,87 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useState } from "react"
+import { AnimatePresence, motion } from "framer-motion"
 import { useTranslations } from "next-intl"
-import { Badge } from "@/components/ui/badge"
+import { EASE_OUT, MainButton, RollText, SplitHeading, SubtitleMarquee } from "@/components/site/primitives"
+
+const SKILL_META = [
+  { image: "/uijp2.webp", tags: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS"] },
+  { image: "/pipeline.webp", tags: ["Node.js", "Express", "MongoDB", "PostgreSQL", "API REST"] },
+  { image: "/carino.webp", tags: ["React Native", "Expo", "NativeWind", "Flutter"] },
+  { image: "/code.webp", tags: ["Git", "GitHub", "VS Code", "Figma", "Docker"] },
+]
 
 export function Skills() {
-  const t = useTranslations("skills")
-
-  const skillCategories = [
-    {
-      title: t("frontend"),
-      skills: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS"],
-    },
-    {
-      title: t("backend"),
-      skills: ["Node.js", "Express", "MongoDB", "PostgreSQL", "API REST"],
-    },
-    {
-      title: t("tools"),
-      skills: ["Git", "GitHub", "VS Code", "Figma", "Docker"],
-    },
-    {
-      title: t("mobile"),
-      skills: ["React Native", "Expo", "NativeWind", "Flutter"],
-    },
-  ]
-
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 },
-  }
+  const t = useTranslations("site.skills")
+  const items = t.raw("items") as { title: string; text: string }[]
+  const [hovered, setHovered] = useState<number | null>(null)
 
   return (
-    <section id="skills" className="py-20">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              {t("title")}
-            </span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("subtitle")}</p>
-        </motion.div>
+    <section id="skills" className="section-dark">
+      <div className="padding-global">
+        <div className="container-large">
+          <div className="padding-section-large">
+            <div className="top-grid">
+              <div className="max-width-large">
+                <SubtitleMarquee text={t("subtitle")} muted />
+                <SplitHeading
+                  className="heading-style-h2 text-color-alternate"
+                  segments={[
+                    { text: t("title1") },
+                    { text: t("title2"), className: "text-color-secondary" },
+                  ]}
+                />
+              </div>
+              <MainButton href="#projects" alternate>{t("cta")}</MainButton>
+            </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {skillCategories.map((category, categoryIndex) => (
-            <motion.div
-              key={categoryIndex}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: categoryIndex * 0.1 }}
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              <h3 className="text-xl font-semibold text-center">{category.title}</h3>
-              <motion.div
-                variants={container}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="flex flex-wrap gap-2 justify-center"
-              >
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.div key={skillIndex} variants={item}>
-                    <Badge
-                      variant="secondary"
-                      className="text-sm py-1 px-3 hover:bg-primary hover:text-primary-foreground transition-colors cursor-default"
-                    >
-                      {skill}
-                    </Badge>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </motion.div>
-          ))}
+            <div className="spacer-xlarge" />
+            <div className="dark-line" />
+
+            <div>
+              {items.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  className="service-content-grid"
+                  onMouseEnter={() => setHovered(i)}
+                  onMouseLeave={() => setHovered(null)}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+                  transition={{ duration: 1, ease: EASE_OUT }}
+                >
+                  <div className="service-content-item">
+                    <div className="service-text">({String(i + 1).padStart(2, "0")})</div>
+                  </div>
+                  <div className="service-content-item">
+                    <RollText className="service-title" wrapClassName="service-title-wrap">{item.title}</RollText>
+                    <AnimatePresence>
+                      {hovered === i && (
+                        <motion.div
+                          className="service-image-wrap"
+                          initial={{ opacity: 0, scale: 0.6, rotate: -8 }}
+                          animate={{ opacity: 1, scale: 1, rotate: 4 }}
+                          exit={{ opacity: 0, scale: 0.6, rotate: -8 }}
+                          transition={{ duration: 0.6, ease: EASE_OUT }}
+                        >
+                          <img src={SKILL_META[i]?.image} alt="" className="service-image" />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                  <div className="service-content-item service-content">
+                    <p className="service-text">{item.text}</p>
+                    <div className="service-tags">
+                      {SKILL_META[i]?.tags.map((tag) => (
+                        <span key={tag} className="service-tag">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

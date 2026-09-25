@@ -2,76 +2,100 @@
 
 import { motion } from "framer-motion"
 import { useTranslations } from "next-intl"
-import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Twitter, Mail } from "lucide-react"
+import { Github, Linkedin, Mail, Twitter } from "lucide-react"
+import { EASE_OUT, UnderlineLink } from "@/components/site/primitives"
+
+const socialLinks = [
+  { icon: Github, href: "https://github.com/socrateNz", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/socrate-nzogning-mbonda?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app", label: "LinkedIn" },
+  { icon: Twitter, href: "https://x.com/NzogningS", label: "Twitter" },
+  { icon: Mail, href: "mailto:snzogning0@gmail.com", label: "Email" },
+]
 
 export function Footer() {
-  const t = useTranslations("footer")
+  const t = useTranslations("site.footer")
+  const nav = useTranslations("site.nav")
 
-  const socialLinks = [
-    {
-      icon: <Github className="h-5 w-5" />,
-      href: "https://github.com/socrateNz",
-      label: "GitHub",
-    },
-    {
-      icon: <Linkedin className="h-5 w-5" />,
-      href: "https://www.linkedin.com/in/socrate-nzogning-mbonda?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-      label: "LinkedIn",
-    },
-    {
-      icon: <Twitter className="h-5 w-5" />,
-      href: "https://x.com/NzogningS",
-      label: "Twitter",
-    },
-    {
-      icon: <Mail className="h-5 w-5" />,
-      href: "mailto:snzogning0@gmail.com",
-      label: "Email",
-    },
+  const navLinks = [
+    { href: "#home", label: nav("home") },
+    { href: "#about", label: nav("about") },
+    { href: "#projects", label: nav("projects") },
+    { href: "#skills", label: nav("skills") },
+    { href: "#contact", label: nav("contact") },
   ]
 
   return (
-    <footer className="bg-muted/50 py-12">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center space-y-8"
-        >
-          <div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                {t("title")}
-              </span>
-            </h2>
-            <p className="text-muted-foreground max-w-md mx-auto">{t("description")}</p>
-          </div>
+    <footer className="footer">
+      <div className="padding-global">
+        <div className="container-large">
+          <div className="footer-padding">
+            <div className="footer-top-content">
+              <h2 className="footer-logo" aria-label="Etarcos">
+                {"Etarcos".split("").map((char, i) => (
+                  <motion.span
+                    key={i}
+                    aria-hidden="true"
+                    style={{ display: "inline-block" }}
+                    initial={{ y: "100%" }}
+                    whileInView={{ y: "0%" }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.2, ease: EASE_OUT, delay: i * 0.05 }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </h2>
+            </div>
 
-          <div className="flex justify-center space-x-4">
-            {socialLinks.map((link, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Button variant="outline" size="icon" asChild>
-                  <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
-                    {link.icon}
-                  </a>
-                </Button>
-              </motion.div>
-            ))}
-          </div>
+            <div className="footer-component-grid">
+              <div className="footer-list">
+                <div className="social-media-wrapper">
+                  {socialLinks.map((s) => (
+                    <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="social-link is-dark roll-trigger">
+                      <span className="roll social-icon-wrap">
+                        <s.icon className="social-icon" />
+                        <s.icon className="social-icon" aria-hidden="true" />
+                      </span>
+                    </a>
+                  ))}
+                </div>
+                <div className="spacer-small" />
+                <div className="text-size-small">Douala, Cameroun</div>
+              </div>
 
-          <div className="border-t pt-8">
-            <p className="text-muted-foreground text-sm">© 2025 Nzogning Mbonda Socrate. {t("rights")}</p>
+              <div className="footer-list is-center">
+                <UnderlineLink href="tel:+237656954474">+237 6 56 95 44 74</UnderlineLink>
+                <UnderlineLink href="mailto:snzogning0@gmail.com">snzogning0@gmail.com</UnderlineLink>
+              </div>
+
+              <div className="footer-list is-right">
+                <div className="text-size-regular text-color-secondary">{t("navigation")}</div>
+                {navLinks.map((link) => (
+                  <UnderlineLink key={link.href} href={link.href} arrow={false}>{link.label}</UnderlineLink>
+                ))}
+              </div>
+            </div>
           </div>
-        </motion.div>
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <div className="padding-global">
+          <div className="container-large">
+            <div className="footer-bottom-grid">
+              <div className="footer-block">
+                <div className="footer-text">Etarcos Dev© {new Date().getFullYear()}</div>
+                <div className="footer-text">│</div>
+                <div className="footer-text">{t("rights")}</div>
+              </div>
+              <div className="footer-block">
+                <div className="footer-text">{t("builtWith")}</div>
+                <div className="footer-text">│</div>
+                <UnderlineLink href="#home" alternate>{t("top")}</UnderlineLink>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   )

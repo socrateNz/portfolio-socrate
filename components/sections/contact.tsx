@@ -1,197 +1,125 @@
 "use client"
 
-import type React from "react"
-
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { useState, type ChangeEvent, type FormEvent } from "react"
 import { useTranslations } from "next-intl"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Mail, Phone, MapPin, Send } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
+import { FadeUp, MainButton, SplitHeading, SubtitleMarquee, UnderlineLink } from "@/components/site/primitives"
+
+function QuoteIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M6 38V26.5C6 16.4 11.2 10.3 21.6 8l1.8 4.1c-5.6 1.7-8.6 5-9 9.9H21V38H6Zm21 0V26.5C27 16.4 32.2 10.3 42.6 8l1.8 4.1c-5.6 1.7-8.6 5-9 9.9H42V38H27Z" />
+    </svg>
+  )
+}
 
 export function Contact() {
-  const t = useTranslations("contact")
-  const { toast } = useToast()
+  const t = useTranslations("site.contact")
+  const legacy = useTranslations("contact")
   const [isLoading, setIsLoading] = useState(false)
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  })
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" })
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
+    setStatus("idle")
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       })
-
       if (!res.ok) throw new Error("Erreur d'envoi")
-
-      toast({
-        title: t("successTitle"),
-        description: t("successMessage"),
-        className: "border-green-500 bg-green-50 text-green-900",
-      })
-
+      setStatus("success")
       setFormData({ name: "", email: "", message: "" })
-    } catch (error) {
-      toast({
-        title: t("errorTitle"),
-        description: t("errorMessage"),
-        variant: "destructive",
-        className: "border-red-500 bg-red-50 text-red-900",
-      })
+    } catch {
+      setStatus("error")
     } finally {
       setIsLoading(false)
     }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }))
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const contactInfo = [
-    {
-      icon: <Mail className="h-5 w-5" />,
-      label: t("email"),
-      value: "snzogning0@gmail.com",
-    },
-    {
-      icon: <Phone className="h-5 w-5" />,
-      label: t("phone"),
-      value: "+237 6 56 95 44 74",
-    },
-    {
-      icon: <MapPin className="h-5 w-5" />,
-      label: t("location"),
-      value: "Douala, Cameroun",
-    },
-  ]
-
   return (
-    <section id="contact" className="py-20">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              {t("title")}
-            </span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("subtitle")}</p>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Informations de contact */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            <div>
-              <h3 className="text-2xl font-semibold mb-6">{t("getInTouch")}</h3>
-              <p className="text-muted-foreground text-lg mb-8">{t("contactDescription")}</p>
+    <section id="contact" className="section-home-testimonial">
+      <div className="padding-global">
+        <div className="container-large">
+          <div className="padding-section-large">
+            <div className="top-grid">
+              <div className="max-width-xlarge">
+                <SubtitleMarquee text={t("subtitle")} />
+                <SplitHeading
+                  className="heading-style-h2"
+                  segments={[
+                    { text: t("title1"), br: true },
+                    { text: t("title2"), className: "text-color-secondary" },
+                  ]}
+                />
+              </div>
             </div>
 
-            <div className="space-y-4">
-              {contactInfo.map((info, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex items-center space-x-4"
-                >
-                  <div className="text-primary">{info.icon}</div>
-                  <div>
-                    <p className="font-medium">{info.label}</p>
-                    <p className="text-muted-foreground">{info.value}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+            <div className="spacer-xlarge" />
 
-          {/* Formulaire de contact */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <Card>
-              <CardHeader>
-                <CardTitle>{t("sendMessage")}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <Input
-                      name="name"
-                      placeholder={t("namePlaceholder")}
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <Input
-                      name="email"
-                      type="email"
-                      placeholder={t("emailPlaceholder")}
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <Textarea
-                      name="message"
-                      placeholder={t("messagePlaceholder")}
-                      value={formData.message}
-                      onChange={handleChange}
-                      rows={5}
-                      required
-                    />
-                  </div>
-                  <Button type="submit" className="w-full" disabled={isLoading}>
-                    {isLoading ? (
-                      <div className="flex items-center">
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                        {t("sending")}
+            <div className="testimonial-component-grid">
+              <FadeUp className="testimonial-video-wrap">
+                <div className="testimonial-media">
+                  <img src="/moi.jpg" alt="Nzogning Mbonda Socrate" loading="lazy" />
+                </div>
+                <div className="client-block">
+                  <div className="client-content-wrap">
+                    <div className="client-info-block">
+                      <div className="text-size-small text-weight-semibold">Nzogning Mbonda Socrate</div>
+                      <div className="text-size-small">
+                        <span className="status-dot" />
+                        {t("role")} — {t("location")}
                       </div>
-                    ) : (
-                      <>
-                        <Send className="mr-2 h-4 w-4" />
-                        {t("sendButton")}
-                      </>
+                    </div>
+                  </div>
+                </div>
+              </FadeUp>
+
+              <FadeUp delay={0.1} className="testimonial-content-item">
+                <div className="testimonial-content-block">
+                  <div>
+                    <QuoteIcon className="quote-icon" />
+                    <h3 className="testimonial-title">{t("cardTitle")}</h3>
+                    <p className="testimonial-text">{t("cardText")}</p>
+                    <div className="contact-list">
+                      <UnderlineLink href="mailto:snzogning0@gmail.com">snzogning0@gmail.com</UnderlineLink>
+                      <UnderlineLink href="tel:+237656954474">+237 6 56 95 44 74</UnderlineLink>
+                    </div>
+                  </div>
+
+                  <form onSubmit={handleSubmit} className="contact-form">
+                    <label className="form-field">
+                      <span className="form-label">{t("name")}</span>
+                      <input className="form-input" name="name" value={formData.name} onChange={handleChange} placeholder={legacy("namePlaceholder")} required />
+                    </label>
+                    <label className="form-field">
+                      <span className="form-label">{t("email")}</span>
+                      <input className="form-input" type="email" name="email" value={formData.email} onChange={handleChange} placeholder={legacy("emailPlaceholder")} required />
+                    </label>
+                    <label className="form-field">
+                      <span className="form-label">{t("message")}</span>
+                      <textarea className="form-input" name="message" rows={4} value={formData.message} onChange={handleChange} placeholder={legacy("messagePlaceholder")} required />
+                    </label>
+                    <div>
+                      <MainButton type="submit" disabled={isLoading}>{isLoading ? t("sending") : t("send")}</MainButton>
+                    </div>
+                    {status !== "idle" && (
+                      <p className={`form-status ${status === "success" ? "is-success" : "is-error"}`} role="status">
+                        {status === "success" ? legacy("successMessage") : legacy("errorMessage")}
+                      </p>
                     )}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </motion.div>
+                  </form>
+                </div>
+              </FadeUp>
+            </div>
+          </div>
         </div>
       </div>
     </section>

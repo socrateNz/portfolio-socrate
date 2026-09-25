@@ -11,7 +11,7 @@
     "title": "NZOGNING MBONDA Socrate",
     "subtitle1": "who turns coffee",
     "subtitle2": "into code",
-    "description": "Passionate about web and mobile development, I create performant and intuitive applications with the latest technologies.",
+    "description": "I am Nzogning Mbonda Socrate. Passionate about web and mobile development, I create high-performance, intuitive applications using the latest technologies.",
     "seeButton": "See my work",
     "year": "Years coding",
     "project": "Projects shipped",
@@ -136,5 +136,102 @@
     "title": "Let's work together",
     "description": "Ready to bring your ideas to life? Contact me to discuss your next project.",
     "rights": "All rights reserved."
+  },
+  "site": {
+    "nav": {
+      "home": "Home",
+      "about": "Profile",
+      "projects": "Projects",
+      "skills": "Skills",
+      "contact": "Contact",
+      "menuCta": "Get in touch",
+      "tagline": "Web & Mobile Developer"
+    },
+    "hero": {
+      "description": "who turns coffee into code.",
+      "services": [
+        "Web Development",
+        "Mobile Apps",
+        "APIs & Back-end",
+        "UI / Front-end"
+      ]
+    },
+    "stack": {
+      "label": "Tech stack:"
+    },
+    "intro": {
+      "subtitle": "Driven by code — ",
+      "textStrong": "I build web and mobile experiences that help",
+      "textMuted": "brands and ideas stand out™.",
+      "description": "By combining strategy, design, and technology, I turn ideas into meaningful digital products. My work blends imagination with precision to create fast, robust and delightful applications.",
+      "primary": "My story",
+      "secondary": "Contact me"
+    },
+    "projects": {
+      "subtitle": "My portfolio — ",
+      "title1": "Selected",
+      "title2": "work©",
+      "all": "See all on GitHub",
+      "empty": "No projects yet.",
+      "private": "Private"
+    },
+    "about": {
+      "subtitle": "Why me — ",
+      "title1": "Choose",
+      "title2": "excellence",
+      "cta": "Get in touch",
+      "since": "(2022-26©)",
+      "stat1Label": "Successful projects\ncompleted",
+      "stat1Text": "For several years, I've been building web and mobile applications.",
+      "stat1Muted": "Every project is backed by solid skills, method and creativity.",
+      "stat2Label": "Years of\nexperience",
+      "stat2Text": "I measure success by the impact I create.",
+      "stat2Muted": "My clients trust me to deliver solutions that exceed expectations."
+    },
+    "skills": {
+      "subtitle": "My skills — ",
+      "title1": "Creative",
+      "title2": "solutions",
+      "cta": "See projects",
+      "items": [
+        {
+          "title": "Frontend",
+          "text": "Fast, accessible interfaces with React, Next.js, TypeScript and Tailwind CSS."
+        },
+        {
+          "title": "Backend",
+          "text": "Robust APIs with Node.js, Express, MongoDB and PostgreSQL."
+        },
+        {
+          "title": "Mobile",
+          "text": "Cross-platform native apps with React Native, Expo and Flutter."
+        },
+        {
+          "title": "Tools",
+          "text": "A polished workflow: Git, GitHub, Docker, Figma and VS Code."
+        }
+      ]
+    },
+    "contact": {
+      "subtitle": "Contact — ",
+      "title1": "Let's work",
+      "title2": "together",
+      "cardTitle": "Tell me about\nyour project...",
+      "cardText": "An idea, a project, an opportunity? Drop me a line and I'll get back to you quickly.",
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send message",
+      "sending": "Sending...",
+      "role": "Full Stack Developer",
+      "location": "Douala, Cameroon"
+    },
+    "footer": {
+      "navigation": "Navigation",
+      "socials": "Socials",
+      "rights": "All rights reserved",
+      "top": "Back to top",
+      "builtWith": "Built with Next.js"
+    }
   }
 }

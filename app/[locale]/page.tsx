@@ -1,7 +1,9 @@
 import { Hero } from "@/components/sections/hero"
+import { Stack } from "@/components/sections/stack"
+import { Intro } from "@/components/sections/intro"
+import { Projects } from "@/components/sections/projects"
 import { About } from "@/components/sections/about"
 import { Skills } from "@/components/sections/skills"
-import { Projects } from "@/components/sections/projects"
 import { Contact } from "@/components/sections/contact"
 import { Footer } from "@/components/sections/footer"
 import { Navigation } from "@/components/navigation"
@@ -14,14 +16,18 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background overflow-clip">
+    <div className="site">
       <Navigation />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
+      <main>
+        <Hero />
+        <Stack />
+        <Intro />
+        <Projects />
+        <About />
+        <Skills />
+        <Contact />
+      </main>
       <Footer />
-    </main>
+    </div>
   )
 }

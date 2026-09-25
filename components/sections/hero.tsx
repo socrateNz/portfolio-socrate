@@ -1,152 +1,155 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
-import { ArrowUpRight, Github, Linkedin, Twitter } from "lucide-react";
-import { useTranslations } from "next-intl";
-import Image from "next/image";
+import { useEffect, useRef, useState, type MouseEvent } from "react"
+import { AnimatePresence, motion } from "framer-motion"
+import { Github, Linkedin, Twitter } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { EASE_OUT } from "@/components/site/primitives"
+
+const TRAIL_IMAGES = ["/carino.webp", "/uijp2.webp", "/pipeline.webp", "/code.webp", "/etarcosold.webp"]
+const TITLE = "Etarcos"
+
+const socialLinks = [
+  { icon: Github, href: "https://github.com/socrateNz", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/socrate-nzogning-mbonda/?skipRedirect=true", label: "LinkedIn" },
+  { icon: Twitter, href: "https://x.com/socrateNz", label: "X / Twitter" },
+]
+
+type TrailItem = { id: number; x: number; y: number; src: string }
 
 export function Hero() {
-  const t = useTranslations("hero");
+  const t = useTranslations("site.hero")
+  const services = t.raw("services") as string[]
+  const [serviceIndex, setServiceIndex] = useState(0)
+  const [trail, setTrail] = useState<TrailItem[]>([])
+  const last = useRef({ x: 0, y: 0, img: 0, id: 0 })
 
-  const socialLinks = [
-    {
-      icon: Twitter,
-      href: "https://x.com/socrateNz",
-      label: "X / Twitter",
-    },
-    {
-      icon: Linkedin,
-      href: "https://www.linkedin.com/in/socrate-nzogning-mbonda/?skipRedirect=true",
-      label: "LinkedIn",
-    },
-    {
-      icon: Github,
-      href: "https://github.com/socrateNz",
-      label: "GitHub",
-    },
-  ];
+  useEffect(() => {
+    const id = setInterval(() => setServiceIndex((i) => (i + 1) % services.length), 2200)
+    return () => clearInterval(id)
+  }, [services.length])
+
+  // Image trail: drop a new image every 100px of mouse travel (same rule as the reference GSAP script)
+  const onMouseMove = (e: MouseEvent<HTMLElement>) => {
+    if (window.matchMedia("(hover: none)").matches) return
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    if (Math.abs(x - last.current.x) < 100 && Math.abs(y - last.current.y) < 100) return
+    last.current.x = x
+    last.current.y = y
+    last.current.img = (last.current.img + 1) % TRAIL_IMAGES.length
+    const item = { id: ++last.current.id, x, y, src: TRAIL_IMAGES[last.current.img] }
+    setTrail((items) => [...items.slice(-7), item])
+    setTimeout(() => setTrail((items) => items.filter((i) => i.id !== item.id)), 1300)
+  }
 
   return (
-    <section
-      id="home"
-      className="max-w-[1440px] w-[calc(100%-2rem)] md:w-full mx-auto relative min-h-[620px] sm:min-h-[80vh] h-full overflow-hidden bg-[#0d0d0d] rounded-3xl mt-24 md:mt-20"
-    >
-      {/* Radial purple glow behind photo */}
-      <div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none"
-        aria-hidden="true"
-      >
-        <div
-          className="w-[320px] h-[320px] sm:w-[500px] sm:h-[500px] md:w-[700px] md:h-[700px] rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(120,60,200,0.35) 0%, rgba(80,30,140,0.15) 45%, transparent 72%)",
-          }}
-        />
-      </div>
-
-      {/* Giant name — background typographic layer */}
-      <div
-        className="absolute inset-0 flex mt-12 sm:mt-16 md:mt-20 justify-center pointer-events-none select-none overflow-hidden"
-        aria-hidden="true"
-      >
-        <h1
-          className="text-white font-black text-center whitespace-pre-line md:whitespace-nowrap opacity-90 tracking-tighter"
-          style={{
-            fontSize: "clamp(3.5rem, 14vw, 15rem)",
-            lineHeight: 0.85,
-            fontFamily: "'Inter', 'Arial Black', sans-serif",
-          }}
-        >
-          Etarcos{"\n"}Dev
-        </h1>
-      </div>
-
-      {/* Hero photo — middle layer */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, ease: "easeOut" }}
-        className="absolute inset-x-0 bottom-0 flex justify-center pointer-events-none"
-        style={{ zIndex: 10 }}
-      >
-        <div
-          className="relative w-[clamp(240px,75vw,900px)] h-[36vh] sm:h-[48vh] md:h-[clamp(290px,65vh,880px)]"
-        >
-          <Image
-            src="/assets/hero.png"
-            alt="Etarcos Dev - Full Stack Developer"
-            fill
-            style={{ objectFit: "contain", objectPosition: "bottom center" }}
-            priority
+    <header id="home" className="section-home-header" onMouseMove={onMouseMove}>
+      <div className="header-component-grid">
+        <div className="background-video-wrap">
+          <motion.img
+            src="/profil.webp"
+            alt=""
+            className="background-media"
+            initial={{ scale: 1.25 }}
+            animate={{ scale: 1.05 }}
+            transition={{ duration: 2.4, ease: EASE_OUT }}
           />
+          <div className="video-overlay" />
         </div>
-      </motion.div>
 
-      {/* UI overlay — top layer */}
-      <div
-        className="relative flex flex-col justify-between h-full min-h-[620px] sm:min-h-[80vh] p-5 sm:p-8 md:p-12 bg-gradient-to-t from-[#0d0d0d]/90 via-[#0d0d0d]/30 to-transparent sm:bg-none"
-        style={{ zIndex: 20 }}
-      >
-        {/* Top spacer (fixed nav above) */}
-        <div />
+        <div className="trail-layer" aria-hidden="true">
+          <AnimatePresence>
+            {trail.map((item) => (
+              <motion.div key={item.id} className="trail-item" style={{ x: item.x, y: item.y }}>
+                <motion.img
+                  src={item.src}
+                  alt=""
+                  initial={{ opacity: 0, scale: 0.5, y: 0 }}
+                  animate={{ opacity: [0, 1, 1, 0], scale: [0.5, 1, 1, 1], y: ["0rem", "0rem", "0rem", "8rem"] }}
+                  transition={{ duration: 1.3, times: [0, 0.4, 0.62, 1], ease: "easeOut" }}
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
 
-        {/* Bottom content row */}
-        <div className="flex flex-col sm:flex-row items-center sm:items-end justify-between gap-6 pb-4 sm:pb-12 md:pb-20 pt-20 sm:pt-0">
-          {/* Left — description + social icons */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.5 }}
-            className="max-w-xs flex flex-col items-center sm:items-start text-center sm:text-left"
-          >
-            <p className="text-white text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 drop-shadow-sm">
-              {t("description")}
-            </p>
-
-            <div className="flex items-center gap-3">
-              {socialLinks.map((social) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  whileHover={{ scale: 1.12 }}
-                  whileTap={{ scale: 0.93 }}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-primary hover:bg-primary/80 text-white transition-colors duration-200 shadow-md"
-                >
-                  <social.icon className="w-4 h-4" />
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right — tagline + CTA button */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
-            className="max-w-xs flex flex-col items-center sm:items-end text-center sm:text-right"
-          >
-            <p className="text-white text-xs sm:text-sm leading-relaxed mb-4 sm:mb-5 drop-shadow-sm">
-              {t("subtitle1")} {t("subtitle2")}
-            </p>
-
-            <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.96 }}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-primary hover:bg-primary/80 text-white text-sm font-semibold transition-colors duration-200 shadow-lg"
+        <div className="header-content-wrap">
+          <div className="header-title-wrap">
+            <motion.div
+              className="copyright-symbol"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1 }}
             >
-              {t("contactButton") || "Let's Talk"}
-              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-white/20">
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </span>
-            </motion.a>
+              ®
+            </motion.div>
+            <h1 className="header-title" aria-label={TITLE}>
+              {TITLE.split("").map((char, i) => (
+                <motion.span
+                  key={i}
+                  aria-hidden="true"
+                  initial={{ y: "105%" }}
+                  animate={{ y: "0%" }}
+                  transition={{ duration: 1.4, ease: EASE_OUT, delay: 0.3 + i * 0.06 }}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </h1>
+          </div>
+          <motion.div
+            className="header-description"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.9 }}
+          >
+            {t("description")}
           </motion.div>
+        </div>
+
+        <div className="padding-global header-bottom-slot">
+          <div className="container-large">
+            <motion.div
+              className="header-bottom-wrap"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, ease: EASE_OUT, delay: 1.1 }}
+            >
+              <div className="header-inner-grid">
+                <div className="social-list">
+                  {socialLinks.map((s) => (
+                    <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="social-link roll-trigger">
+                      <span className="roll social-icon-wrap">
+                        <s.icon className="social-icon" />
+                        <s.icon className="social-icon" aria-hidden="true" />
+                      </span>
+                    </a>
+                  ))}
+                </div>
+
+                <div className="service-marquee-component" aria-live="polite">
+                  <AnimatePresence initial={false}>
+                    <motion.div
+                      key={serviceIndex}
+                      className="marquee-service-text"
+                      initial={{ y: "100%", opacity: 0 }}
+                      animate={{ y: "0%", opacity: 1 }}
+                      exit={{ y: "-100%", opacity: 0 }}
+                      transition={{ duration: 0.8, ease: EASE_OUT }}
+                    >
+                      {services[serviceIndex]}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                <div className="header-scroll-hint">(Scroll ↓)</div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
-    </section>
-  );
+    </header>
+  )
 }
