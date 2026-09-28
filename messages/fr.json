@@ -232,6 +232,21 @@
       "rights": "Tous droits réservés",
       "top": "Haut de page",
       "builtWith": "Conçu avec Next.js"
+    },
+    "quickview": {
+      "label": "Projet",
+      "missions": "Missions",
+      "technologies": "Technologies",
+      "challenges": "Défis",
+      "solutions": "Solutions",
+      "live": "Voir le site",
+      "code": "Code source",
+      "privateCode": "Code source privé",
+      "private": "Privé",
+      "featured": "En vedette",
+      "close": "Fermer",
+      "prev": "Image précédente",
+      "next": "Image suivante"
     }
   }
 }

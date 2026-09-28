@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useTranslations } from "next-intl"
-import { QuickView } from "../QuickView"
+import { ProjectDialog } from "./project-dialog"
 import { ArrowIcon, EASE_OUT, MainButton, RollText, SplitHeading, SubtitleMarquee } from "@/components/site/primitives"
 
 interface Project {
@@ -175,7 +175,12 @@ export function Projects() {
           </div>
         </div>
       </div>
-      <QuickView project={selectedProject} isOpen={open} onClose={() => setOpen(false)} />
+      <ProjectDialog
+        project={selectedProject}
+        index={selectedProject ? sorted.findIndex((p) => p._id === selectedProject._id) : 0}
+        isOpen={open}
+        onClose={() => setOpen(false)}
+      />
     </section>
   )
 }

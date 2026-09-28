@@ -7,6 +7,9 @@ import { usePathname, useRouter } from "@/i18n/navigation"
 import { routing } from "@/i18n/routing"
 import { EASE_OUT, MainButton, RollText } from "@/components/site/primitives"
 
+// Time the menu texts need to leave before the white panel starts folding
+const MENU_TEXT_OUT = 0.4
+
 export function Navigation() {
   const t = useTranslations("site.nav")
   const locale = useLocale()
@@ -118,16 +121,21 @@ export function Navigation() {
             <motion.div
               className="navigation-opacity"
               onClick={() => setOpen(false)}
-              variants={{ open: { opacity: 1 }, closed: { opacity: 0 } }}
-              transition={{ duration: 0.5 }}
+              variants={{
+                open: { opacity: 1, transition: { duration: 0.5 } },
+                closed: { opacity: 0, transition: { duration: 0.35, delay: MENU_TEXT_OUT + 0.35 } },
+              }}
             />
             <div className="navigation-container" onClick={(e) => e.target === e.currentTarget && setOpen(false)}>
               <div className="navigation-content-wrap">
                 <div className="navigation-content-block">
                   <motion.div
                     className="navigation-background"
-                    variants={{ open: { scaleY: 1, scaleX: 1 }, closed: { scaleY: 0, scaleX: 0.6 } }}
-                    transition={{ duration: 0.8, ease: EASE_OUT }}
+                    variants={{
+                      open: { scaleY: 1, scaleX: 1, transition: { duration: 0.8, ease: EASE_OUT } },
+                      // Folds only once the links and footer have left
+                      closed: { scaleY: 0, scaleX: 0.6, transition: { duration: 0.55, ease: [0.65, 0, 0.35, 1], delay: MENU_TEXT_OUT } },
+                    }}
                   />
                   <div className="navigation-content">
                     <div className="navigation-content-list">
@@ -137,8 +145,10 @@ export function Navigation() {
                             href={link.href}
                             className="navigation-link roll-trigger"
                             onClick={() => setOpen(false)}
-                            variants={{ open: { y: "0%" }, closed: { y: "110%" } }}
-                            transition={{ duration: 0.9, ease: EASE_OUT, delay: 0.15 + i * 0.06 }}
+                            variants={{
+                              open: { y: "0%", transition: { duration: 0.9, ease: EASE_OUT, delay: 0.15 + i * 0.06 } },
+                              closed: { y: "110%", transition: { duration: 0.3, ease: "easeIn", delay: (menuLinks.length - 1 - i) * 0.03 } },
+                            }}
                           >
                             <RollText className="navigation-link-text" wrapClassName="navigation-link-wrap">{link.label}</RollText>
                             <span className="navigation-number">({String(i + 1).padStart(2, "0")})</span>
@@ -149,8 +159,10 @@ export function Navigation() {
 
                     <motion.div
                       className="navigation-footer"
-                      variants={{ open: { opacity: 1, y: 0 }, closed: { opacity: 0, y: 20 } }}
-                      transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.45 }}
+                      variants={{
+                        open: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE_OUT, delay: 0.45 } },
+                        closed: { opacity: 0, y: 20, transition: { duration: 0.25, ease: "easeIn" } },
+                      }}
                     >
                       <MainButton href="#contact" onClick={() => setOpen(false)}>{t("menuCta")}</MainButton>
                       <div className="locale-switch">
