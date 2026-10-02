@@ -233,6 +233,11 @@
       "top": "Haut de page",
       "builtWith": "Conçu avec Next.js"
     },
+    "meta": {
+      "title": "Etarcos Dev — Développeur Web & Mobile à Douala",
+      "description": "Portfolio de Nzogning Mbonda Socrate (Etarcos), développeur full stack web et mobile à Douala, Cameroun. Applications rapides et robustes avec React, Next.js, TypeScript, Node.js et React Native.",
+      "keywords": "développeur web, développeur mobile, développeur full stack, Next.js, React, React Native, TypeScript, Node.js, Douala, Cameroun, freelance, Etarcos"
+    },
     "quickview": {
       "label": "Projet",
       "missions": "Missions",
