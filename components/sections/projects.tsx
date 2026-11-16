@@ -168,7 +168,7 @@ export function Projects() {
 
             <div className="spacer-xlarge" />
             <div className="button-wrap">
-              <MainButton href="https://github.com/socrateNz" target="_blank" alternate>
+              <MainButton href="https://github.com/socrateNz" target="_blank">
                 {t("all")}
               </MainButton>
             </div>

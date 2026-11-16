@@ -40,7 +40,6 @@ export function Navigation() {
     { href: "#home", label: t("home") },
     { href: "#about", label: t("about") },
     { href: "#projects", label: t("projects") },
-    { href: "#contact", label: t("contact") },
   ]
 
   const menuLinks = [
@@ -77,23 +76,25 @@ export function Navigation() {
                 <div className="logo-text">{t("tagline")}</div>
               </div>
 
+              <div className="nav-link-block">
+                {quickLinks.map((link) => (
+                  <a key={link.href} href={link.href} className="nav-link roll-trigger">
+                    <RollText className="nav-text" wrapClassName="nav-text-wrap">{link.label}</RollText>
+                  </a>
+                ))}
+                <button
+                  type="button"
+                  className="nav-link roll-trigger"
+                  disabled={isPending}
+                  onClick={() => switchLocale(locale === "fr" ? "en" : "fr")}
+                  aria-label={locale === "fr" ? "Switch to English" : "Passer en français"}
+                >
+                  <RollText className="nav-text" wrapClassName="nav-text-wrap">{locale === "fr" ? "EN" : "FR"}</RollText>
+                </button>
+              </div>
+
               <div className="nav-wrapper">
-                <div className="nav-link-block">
-                  {quickLinks.map((link) => (
-                    <a key={link.href} href={link.href} className="nav-link roll-trigger">
-                      <RollText className="nav-text" wrapClassName="nav-text-wrap">{link.label}</RollText>
-                    </a>
-                  ))}
-                  <button
-                    type="button"
-                    className="nav-link roll-trigger"
-                    disabled={isPending}
-                    onClick={() => switchLocale(locale === "fr" ? "en" : "fr")}
-                    aria-label={locale === "fr" ? "Switch to English" : "Passer en français"}
-                  >
-                    <RollText className="nav-text" wrapClassName="nav-text-wrap">{locale === "fr" ? "EN" : "FR"}</RollText>
-                  </button>
-                </div>
+                <MainButton href="#contact" className="nav-cta">{t("quote")}</MainButton>
 
                 <button
                   type="button"

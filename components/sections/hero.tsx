@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { Github, Linkedin, Twitter } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { EASE_OUT } from "@/components/site/primitives"
+import { HeroParticles } from "./hero-particles"
 
 const TRAIL_IMAGES = ["/carino.webp", "/uijp2.webp", "/pipeline.webp", "/code.webp", "/etarcosold.webp"]
 const TITLE = "Etarcos"
@@ -48,15 +49,7 @@ export function Hero() {
     <header id="home" className="section-home-header" onMouseMove={onMouseMove}>
       <div className="header-component-grid">
         <div className="background-video-wrap">
-          <motion.img
-            src="/profil.webp"
-            alt=""
-            className="background-media"
-            initial={{ scale: 1.25 }}
-            animate={{ scale: 1.05 }}
-            transition={{ duration: 2.4, ease: EASE_OUT }}
-          />
-          <div className="video-overlay" />
+          <HeroParticles />
         </div>
 
         <div className="trail-layer" aria-hidden="true">

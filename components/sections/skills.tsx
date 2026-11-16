@@ -33,7 +33,7 @@ export function Skills() {
                   ]}
                 />
               </div>
-              <MainButton href="#projects" alternate>{t("cta")}</MainButton>
+              <MainButton href="#projects">{t("cta")}</MainButton>
             </div>
 
             <div className="spacer-xlarge" />
