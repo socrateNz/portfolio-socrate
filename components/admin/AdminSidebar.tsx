@@ -46,7 +46,7 @@ const NAV_GROUPS: { groupName: string; items: NavItem[] }[] = [
     items: [
       { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
       { id: "analytics", label: "Analytics", icon: BarChart3 },
-      { id: "projects", label: "Projets", icon: FolderGit2, badge: "28" },
+      { id: "projects", label: "Projets", icon: FolderGit2 },
       { id: "github", label: "GitHub Hub", icon: Github },
       { id: "github-contributions", label: "Contributions GitHub", icon: Activity },
       { id: "ai-insights", label: "AI Insights", icon: Sparkles, badge: "AI" },
@@ -64,6 +64,16 @@ const NAV_GROUPS: { groupName: string; items: NavItem[] }[] = [
 ]
 
 export function AdminSidebar({ activeTab, setActiveTab, collapsed, setCollapsed }: AdminSidebarProps) {
+  // Real project count from the API (same source as the public site)
+  const [projectCount, setProjectCount] = React.useState<number | null>(null)
+
+  React.useEffect(() => {
+    fetch("/api/projects")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => Array.isArray(data) && setProjectCount(data.length))
+      .catch(() => {})
+  }, [activeTab])
+
   return (
     <TooltipProvider delayDuration={100}>
       <motion.aside
@@ -131,6 +141,7 @@ export function AdminSidebar({ activeTab, setActiveTab, collapsed, setCollapsed 
               {group.items.map((item) => {
                 const Icon = item.icon
                 const isActive = activeTab === item.id
+                const badge = item.id === "projects" ? (projectCount !== null ? String(projectCount) : undefined) : item.badge
 
                 const navButton = (
                   <button
@@ -150,7 +161,7 @@ export function AdminSidebar({ activeTab, setActiveTab, collapsed, setCollapsed 
                     {!collapsed && (
                       <span className="flex-1 text-left truncate">{item.label}</span>
                     )}
-                    {!collapsed && item.badge && (
+                    {!collapsed && badge && (
                       <Badge
                         variant="secondary"
                         className={`text-[10px] px-1.5 py-0.2 rounded-md ${
@@ -159,7 +170,7 @@ export function AdminSidebar({ activeTab, setActiveTab, collapsed, setCollapsed 
                             : "bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400"
                         }`}
                       >
-                        {item.badge}
+                        {badge}
                       </Badge>
                     )}
                   </button>
