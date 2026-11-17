@@ -121,9 +121,9 @@ export function NotificationCenter() {
       case "cv":
         return <FileText className="h-4 w-4 text-sky-500" />
       case "visitor":
-        return <UserCheck className="h-4 w-4 text-indigo-500" />
+        return <UserCheck className="h-4 w-4 text-zinc-400" />
       case "project":
-        return <FolderPlus className="h-4 w-4 text-purple-500" />
+        return <FolderPlus className="h-4 w-4 text-zinc-400" />
       case "certificate":
         return <Award className="h-4 w-4 text-amber-500" />
       case "server":
@@ -137,7 +137,7 @@ export function NotificationCenter() {
         <Button variant="ghost" size="icon" className="relative rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800">
           <Bell className="h-5 w-5 text-zinc-600 dark:text-zinc-300" />
           {unreadCount > 0 && (
-            <span className="absolute top-1.5 right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-indigo-600 text-[10px] font-bold text-white shadow-sm animate-pulse">
+            <span className="absolute top-1.5 right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-brand-600 text-[10px] font-bold text-white shadow-sm animate-pulse">
               {unreadCount}
             </span>
           )}
@@ -148,7 +148,7 @@ export function NotificationCenter() {
           <div className="flex items-center gap-2">
             <SheetTitle className="text-base font-semibold">Centre de Notifications</SheetTitle>
             {unreadCount > 0 && (
-              <Badge variant="secondary" className="bg-indigo-500/10 text-indigo-500 border-indigo-500/20">
+              <Badge variant="secondary" className="border-zinc-500/20 text-zinc-600 dark:text-zinc-300 bg-zinc-500/10 ">
                 {unreadCount} non lues
               </Badge>
             )}
@@ -206,7 +206,7 @@ export function NotificationCenter() {
                     className={`relative group p-3.5 rounded-xl border transition-all ${
                       notification.read
                         ? "bg-white/40 dark:bg-zinc-900/40 border-zinc-200/60 dark:border-zinc-800/60 text-zinc-500"
-                        : "bg-white dark:bg-zinc-900 border-indigo-500/30 dark:border-indigo-500/30 shadow-sm"
+                        : "bg-white dark:bg-zinc-900 border-brand-500/30 dark:border-brand-500/30 shadow-sm"
                     }`}
                   >
                     <div className="flex items-start gap-3">
@@ -232,7 +232,7 @@ export function NotificationCenter() {
                       </button>
                     </div>
                     {!notification.read && (
-                      <span className="absolute top-3 right-3 h-2 w-2 rounded-full bg-indigo-500" />
+                      <span className="absolute top-3 right-3 h-2 w-2 rounded-full bg-brand-500" />
                     )}
                   </motion.div>
                 ))}

@@ -60,7 +60,7 @@ function getLevel(count: number): 0 | 1 | 2 | 3 | 4 {
 function getLevelBgColor(level: 0 | 1 | 2 | 3 | 4): string {
   switch (level) {
     case 0:
-      return "bg-[#161b22] border border-white/5"
+      return "bg-[#141414] border border-white/5"
     case 1:
       return "bg-[#0e4429]"
     case 2:
@@ -232,9 +232,9 @@ export function GithubContributionGraph({
     <TooltipProvider delayDuration={100}>
       <div className="w-full space-y-4 font-sans">
         {/* Top Year Filter Tabs Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 bg-[#0d1117]/80 border border-[#30363d] p-3 rounded-xl">
+        <div className="flex flex-wrap items-center justify-between gap-3 bg-[#0e0e0e]/80 border border-[#2a2a2a] p-3 rounded-xl">
           <div className="flex items-center gap-2">
-            <Calendar className="h-4 w-4 text-blue-400" />
+            <Calendar className="h-4 w-4 text-zinc-400" />
             <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">
               Filtre d'Années :
             </span>
@@ -249,8 +249,8 @@ export function GithubContributionGraph({
                   onClick={() => setSelectedYear(year)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                     isSelected
-                      ? "bg-[#1f6feb] text-white shadow-md shadow-blue-500/20 ring-2 ring-blue-400/40"
-                      : "bg-[#161b22] text-[#8b949e] hover:text-white hover:bg-[#21262d] border border-[#30363d]"
+                      ? "bg-white text-[#0e0e0e] font-semibold"
+                      : "bg-[#141414] text-[#8d8d8d] hover:text-white hover:bg-[#1d1d1d] border border-[#2a2a2a]"
                   }`}
                 >
                   {year === 2026 ? "2026 (Dernière année)" : year}
@@ -263,16 +263,16 @@ export function GithubContributionGraph({
         {/* Full Width Main Grid Container with Side Buttons */}
         <div className="flex flex-col lg:flex-row items-stretch gap-4 w-full">
           {/* Main Card - Expanded Full Width */}
-          <div className="flex-1 w-full bg-[#0d1117] border border-[#30363d] rounded-2xl p-5 sm:p-6 space-y-4 shadow-2xl relative">
+          <div className="flex-1 w-full bg-[#0e0e0e] border border-[#2a2a2a] rounded-2xl p-5 sm:p-6 space-y-4 shadow-2xl relative">
             {/* Header line inside card */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-[#21262d]">
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-[#1d1d1d]">
               <div className="flex items-center gap-3">
                 <h3 className="text-base sm:text-lg font-bold text-zinc-100 tracking-tight flex items-center gap-2">
                   <Sparkles className="h-4 w-4 text-emerald-400" />
                   {headingText}
                 </h3>
                 {loading && (
-                  <Loader2 className="h-4 w-4 animate-spin text-blue-400" />
+                  <Loader2 className="h-4 w-4 animate-spin text-zinc-400" />
                 )}
               </div>
 
@@ -280,24 +280,24 @@ export function GithubContributionGraph({
                 {/* Level Filter Dropdown */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <button className="inline-flex items-center gap-1.5 text-xs text-zinc-300 bg-[#161b22] hover:bg-[#21262d] border border-[#30363d] px-3 py-1.5 rounded-lg transition-all outline-none font-medium">
-                      <Filter className="h-3.5 w-3.5 text-blue-400" />
+                    <button className="inline-flex items-center gap-1.5 text-xs text-zinc-300 bg-[#141414] hover:bg-[#1d1d1d] border border-[#2a2a2a] px-3 py-1.5 rounded-lg transition-all outline-none font-medium">
+                      <Filter className="h-3.5 w-3.5 text-zinc-400" />
                       Filtre d'intensité
                       <ChevronDown className="h-3.5 w-3.5 text-zinc-400" />
                     </button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
                     align="end"
-                    className="w-48 bg-[#161b22] border-[#30363d] text-zinc-200"
+                    className="w-48 bg-[#141414] border-[#2a2a2a] text-zinc-200"
                   >
                     <DropdownMenuLabel className="text-xs text-zinc-400 font-medium">
                       Seuil de contributions
                     </DropdownMenuLabel>
-                    <DropdownMenuSeparator className="bg-[#30363d]" />
+                    <DropdownMenuSeparator className="bg-[#2a2a2a]" />
                     <DropdownMenuCheckboxItem
                       checked={minLevelFilter === 0}
                       onCheckedChange={() => setMinLevelFilter(0)}
-                      className="text-xs cursor-pointer focus:bg-[#21262d] focus:text-white"
+                      className="text-xs cursor-pointer focus:bg-[#1d1d1d] focus:text-white"
                     >
                       Toutes les contributions
                     </DropdownMenuCheckboxItem>
@@ -306,7 +306,7 @@ export function GithubContributionGraph({
                       onCheckedChange={() =>
                         setMinLevelFilter(minLevelFilter === 2 ? 0 : 2)
                       }
-                      className="text-xs cursor-pointer focus:bg-[#21262d] focus:text-white"
+                      className="text-xs cursor-pointer focus:bg-[#1d1d1d] focus:text-white"
                     >
                       Moyennes & Fortes (&gt; 3)
                     </DropdownMenuCheckboxItem>
@@ -315,7 +315,7 @@ export function GithubContributionGraph({
                       onCheckedChange={() =>
                         setMinLevelFilter(minLevelFilter === 3 ? 0 : 3)
                       }
-                      className="text-xs cursor-pointer focus:bg-[#21262d] focus:text-white"
+                      className="text-xs cursor-pointer focus:bg-[#1d1d1d] focus:text-white"
                     >
                       Fortes contributions (&gt; 6)
                     </DropdownMenuCheckboxItem>
@@ -325,30 +325,30 @@ export function GithubContributionGraph({
                 {/* Contribution settings Dropdown */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <button className="inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-zinc-200 bg-[#161b22] hover:bg-[#21262d] border border-[#30363d] px-3 py-1.5 rounded-lg transition-all outline-none font-medium">
+                    <button className="inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-zinc-200 bg-[#141414] hover:bg-[#1d1d1d] border border-[#2a2a2a] px-3 py-1.5 rounded-lg transition-all outline-none font-medium">
                       Contribution settings
                       <ChevronDown className="h-3.5 w-3.5 text-zinc-400" />
                     </button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
                     align="end"
-                    className="w-56 bg-[#161b22] border-[#30363d] text-zinc-200"
+                    className="w-56 bg-[#141414] border-[#2a2a2a] text-zinc-200"
                   >
                     <DropdownMenuLabel className="text-xs text-zinc-400 font-medium">
                       Graph preferences
                     </DropdownMenuLabel>
-                    <DropdownMenuSeparator className="bg-[#30363d]" />
+                    <DropdownMenuSeparator className="bg-[#2a2a2a]" />
                     <DropdownMenuCheckboxItem
                       checked={includePrivate}
                       onCheckedChange={setIncludePrivate}
-                      className="text-xs cursor-pointer focus:bg-[#21262d] focus:text-white"
+                      className="text-xs cursor-pointer focus:bg-[#1d1d1d] focus:text-white"
                     >
                       Private contributions
                     </DropdownMenuCheckboxItem>
                     <DropdownMenuCheckboxItem
                       checked={showOverview}
                       onCheckedChange={setShowOverview}
-                      className="text-xs cursor-pointer focus:bg-[#21262d] focus:text-white"
+                      className="text-xs cursor-pointer focus:bg-[#1d1d1d] focus:text-white"
                     >
                       Activity overview
                     </DropdownMenuCheckboxItem>
@@ -361,7 +361,7 @@ export function GithubContributionGraph({
             <div className="w-full overflow-x-auto pb-2 pt-2 select-none scrollbar-thin scrollbar-thumb-zinc-800">
               <div className="w-full min-w-[720px]">
                 {/* Month Labels Header Row */}
-                <div className="relative w-full h-5 text-[11px] text-[#8b949e] pl-8 pr-1 mb-1">
+                <div className="relative w-full h-5 text-[11px] text-[#8d8d8d] pl-8 pr-1 mb-1">
                   {monthLabels.map((m, idx) => {
                     const leftPercent = (m.colIndex / weeks.length) * 100
                     return (
@@ -379,7 +379,7 @@ export function GithubContributionGraph({
                 {/* Grid layout spanning 100% of container width */}
                 <div className="flex items-start w-full">
                   {/* Left Day Labels (Mon, Wed, Fri) */}
-                  <div className="grid grid-rows-7 text-[10px] text-[#8b949e] pr-2 text-right font-mono select-none shrink-0 w-8 gap-[3px] py-[1px]">
+                  <div className="grid grid-rows-7 text-[10px] text-[#8d8d8d] pr-2 text-right font-mono select-none shrink-0 w-8 gap-[3px] py-[1px]">
                     <span className="h-3 sm:h-3.5 leading-3"></span>
                     <span className="h-3 sm:h-3.5 leading-3">Mon</span>
                     <span className="h-3 sm:h-3.5 leading-3"></span>
@@ -420,7 +420,7 @@ export function GithubContributionGraph({
                               </TooltipTrigger>
                               <TooltipContent
                                 side="top"
-                                className="bg-[#6e7681] text-white border-0 text-[11px] font-medium py-1 px-2.5 rounded shadow-xl z-50"
+                                className="bg-[#646464] text-white border-0 text-[11px] font-medium py-1 px-2.5 rounded shadow-xl z-50"
                               >
                                 {tooltipLabel}
                               </TooltipContent>
@@ -435,19 +435,19 @@ export function GithubContributionGraph({
             </div>
 
             {/* Footer row inside Card */}
-            <div className="flex items-center justify-between pt-3 text-[11px] text-[#8b949e] border-t border-[#21262d]">
+            <div className="flex items-center justify-between pt-3 text-[11px] text-[#8d8d8d] border-t border-[#1d1d1d]">
               <a
                 href="https://docs.github.com/articles/why-are-my-contributions-not-showing-up-on-my-profile"
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-[#58a6ff] hover:underline transition-colors flex items-center gap-1 font-medium"
+                className="hover:text-brand-300 hover:underline transition-colors flex items-center gap-1 font-medium"
               >
                 Learn how we count contributions
               </a>
 
               <div className="flex items-center gap-2 font-medium">
                 <span>Less</span>
-                <div className="w-3 h-3 rounded-[2px] bg-[#161b22] border border-white/5" />
+                <div className="w-3 h-3 rounded-[2px] bg-[#141414] border border-white/5" />
                 <div className="w-3 h-3 rounded-[2px] bg-[#0e4429]" />
                 <div className="w-3 h-3 rounded-[2px] bg-[#006d32]" />
                 <div className="w-3 h-3 rounded-[2px] bg-[#26a641]" />
@@ -467,8 +467,8 @@ export function GithubContributionGraph({
                   onClick={() => setSelectedYear(year)}
                   className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all text-center lg:text-left flex items-center justify-between ${
                     isSelected
-                      ? "bg-[#1f6feb] text-white shadow-lg shadow-blue-600/30 border border-blue-400/40 translate-x-0 lg:translate-x-1"
-                      : "bg-[#0d1117] text-[#8b949e] hover:text-zinc-100 hover:bg-[#161b22] border border-[#30363d]"
+                      ? "bg-white text-[#0e0e0e] border border-white translate-x-0 lg:translate-x-1"
+                      : "bg-[#0e0e0e] text-[#8d8d8d] hover:text-zinc-100 hover:bg-[#141414] border border-[#2a2a2a]"
                   }`}
                 >
                   <span>{year}</span>

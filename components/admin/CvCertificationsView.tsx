@@ -22,7 +22,7 @@ const CERTIFICATIONS = [
   { name: "AWS Certified Solutions Architect – Professional", issuer: "Amazon Web Services", date: "2026", valid: "Vérifié", badgeColor: "border-amber-500/30 text-amber-500 bg-amber-500/10" },
   { name: "Certified Kubernetes Administrator (CKA)", issuer: "Cloud Native Computing Foundation (CNCF)", date: "2025", valid: "Vérifié", badgeColor: "border-sky-500/30 text-sky-500 bg-sky-500/10" },
   { name: "OpenAI Certified Generative AI & RAG Engineer", issuer: "OpenAI Academy", date: "2025", valid: "Vérifié", badgeColor: "border-emerald-500/30 text-emerald-500 bg-emerald-500/10" },
-  { name: "Meta Professional Senior React & Next.js Developer", issuer: "Meta Coursera", date: "2024", valid: "Vérifié", badgeColor: "border-indigo-500/30 text-indigo-500 bg-indigo-500/10" },
+  { name: "Meta Professional Senior React & Next.js Developer", issuer: "Meta Coursera", date: "2024", valid: "Vérifié", badgeColor: "border-brand-500/30 text-brand-400 bg-brand-500/10" },
 ]
 
 export function CvCertificationsView() {
@@ -48,7 +48,7 @@ export function CvCertificationsView() {
               description: "Socrate_Executive_CV_2026.pdf est téléchargé.",
             })
           }}
-          className="rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs gap-1.5 shadow-md"
+          className="rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs gap-1.5 shadow-md"
         >
           <Download className="h-4 w-4" /> Télécharger CV Executive PDF
         </Button>
@@ -60,7 +60,7 @@ export function CvCertificationsView() {
         <div className="lg:col-span-2 glass-panel rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-800/60 pb-4">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 text-white font-black text-lg">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-600 to-brand-600 text-white font-black text-lg">
                 SO
               </div>
               <div>
@@ -91,7 +91,7 @@ export function CvCertificationsView() {
             </div>
             <div className="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/50 dark:border-zinc-800/50 text-xs">
               <span className="text-zinc-400 font-medium">Spécialité IA</span>
-              <p className="font-extrabold text-indigo-500 text-base">RAG & Multi-Agents</p>
+              <p className="font-extrabold text-brand-400 text-base">RAG & Multi-Agents</p>
             </div>
             <div className="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/50 dark:border-zinc-800/50 text-xs">
               <span className="text-zinc-400 font-medium">Langues</span>

@@ -55,14 +55,14 @@ export function GithubHubView() {
   return (
     <div className="w-full space-y-8 pb-12">
       {/* Top Header Card with Real GitHub User Profile */}
-      <div className="glass-panel rounded-3xl p-6 sm:p-8 space-y-6 border border-purple-500/20 bg-gradient-to-r from-purple-900/10 via-indigo-900/10 to-transparent">
+      <div className="glass-panel rounded-3xl p-6 sm:p-8 space-y-6 border border-brand-500/20 bg-gradient-to-r from-brand-900/10 via-brand-900/10 to-transparent">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <div className="relative shrink-0">
               <img
                 src={avatar}
                 alt={username}
-                className="h-16 w-16 rounded-2xl border-2 border-purple-500/40 shadow-lg object-cover"
+                className="h-16 w-16 rounded-2xl border-2 border-brand-500/40 shadow-lg object-cover"
               />
               <span className="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-zinc-950" />
             </div>
@@ -72,7 +72,7 @@ export function GithubHubView() {
                 <h1 className="text-xl sm:text-2xl font-extrabold text-zinc-900 dark:text-white">
                   {name}
                 </h1>
-                <Badge variant="outline" className="border-purple-500/30 text-purple-500 bg-purple-500/10 font-mono text-xs">
+                <Badge variant="outline" className="border-zinc-500/20 text-zinc-600 dark:text-zinc-300 bg-zinc-500/10 font-mono text-xs">
                   @{username}
                 </Badge>
               </div>
@@ -86,7 +86,7 @@ export function GithubHubView() {
             href={htmlUrl}
             target="_blank"
             rel="noreferrer"
-            className="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs shadow-lg shadow-purple-600/20 transition-all"
+            className="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs shadow-lg shadow-brand-600/20 transition-all"
           >
             <Github className="h-4 w-4" /> Voir le Profil GitHub <ExternalLink className="h-3.5 w-3.5" />
           </a>
@@ -98,12 +98,12 @@ export function GithubHubView() {
         <div className="glass-card rounded-2xl p-5 space-y-1">
           <div className="flex items-center justify-between text-zinc-400 mb-1">
             <span className="text-xs font-semibold uppercase">Repositories Publics</span>
-            <BookOpen className="h-4 w-4 text-purple-500" />
+            <BookOpen className="h-4 w-4 text-zinc-400" />
           </div>
           <p className="text-2xl font-black text-zinc-900 dark:text-white">
-            {loading ? <Loader2 className="h-6 w-6 animate-spin text-purple-500" /> : publicRepos}
+            {loading ? <Loader2 className="h-6 w-6 animate-spin text-zinc-400" /> : publicRepos}
           </p>
-          <span className="text-xs text-purple-500 font-semibold">Projets Open Source en ligne</span>
+          <span className="text-xs text-brand-400 font-semibold">Projets Open Source en ligne</span>
         </div>
 
         <div className="glass-card rounded-2xl p-5 space-y-1">
@@ -145,7 +145,7 @@ export function GithubHubView() {
       <div className="glass-panel rounded-2xl p-6 space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-base font-bold text-zinc-900 dark:text-white flex items-center gap-2">
-            <GitBranch className="h-4 w-4 text-indigo-500" />
+            <GitBranch className="h-4 w-4 text-zinc-400" />
             Repositories Réels GitHub ({repos.length})
           </h3>
           <span className="text-xs text-zinc-400 font-mono">Tris par récence de mise à jour</span>
@@ -153,12 +153,12 @@ export function GithubHubView() {
 
         {loading ? (
           <div className="flex items-center justify-center py-12 text-zinc-400 text-xs gap-2">
-            <Loader2 className="h-5 w-5 animate-spin text-purple-500" />
+            <Loader2 className="h-5 w-5 animate-spin text-zinc-400" />
             <span>Chargement des dépôts en direct depuis l'API GitHub...</span>
           </div>
         ) : repos.length === 0 ? (
           <div className="p-6 text-center text-xs text-zinc-400">
-            Aucun dépôt public trouvé. Vérifiez que <code className="font-mono text-purple-400">GITHUB_USERNAME</code> dans <code className="font-mono text-purple-400">.env.local</code> est correct.
+            Aucun dépôt public trouvé. Vérifiez que <code className="font-mono text-brand-300">GITHUB_USERNAME</code> dans <code className="font-mono text-brand-300">.env.local</code> est correct.
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -174,7 +174,7 @@ export function GithubHubView() {
                       href={repo.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="font-bold text-sm text-indigo-500 font-mono flex items-center gap-1.5 hover:underline truncate"
+                      className="font-bold text-sm text-brand-400 font-mono flex items-center gap-1.5 hover:underline truncate"
                     >
                       <Github className="h-4 w-4 shrink-0" /> {repo.name}
                     </a>
@@ -197,7 +197,7 @@ export function GithubHubView() {
                     <span className="flex items-center gap-1 text-amber-500 font-semibold">
                       <Star className="h-3.5 w-3.5 fill-amber-500" /> {repo.stars}
                     </span>
-                    <span className="flex items-center gap-1 text-purple-400 font-semibold">
+                    <span className="flex items-center gap-1 text-brand-300 font-semibold">
                       <GitBranch className="h-3.5 w-3.5" /> {repo.forks}
                     </span>
                   </div>

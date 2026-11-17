@@ -156,7 +156,8 @@ export function HomeDashboardView({ onNavigate }: HomeDashboardViewProps) {
       }
     })
     const total = Object.values(counts).reduce((a, b) => a + b, 0) || 1
-    const colors = ["#6366f1", "#38bdf8", "#a855f7", "#10b981", "#f59e0b", "#ec4899"]
+    // Brand purple + site greys, so the chart reads like the rest of the UI
+    const colors = ["#703ab3", "#a47ad8", "#d6c2ef", "#8d8d8d", "#646464", "#3a3a3a"]
     return Object.entries(counts)
       .sort((a, b) => b[1] - a[1])
       .slice(0, 6)
@@ -184,25 +185,25 @@ export function HomeDashboardView({ onNavigate }: HomeDashboardViewProps) {
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="glass-panel rounded-3xl p-6 sm:p-8 relative overflow-hidden bg-gradient-to-r from-indigo-900/10 via-purple-900/10 to-transparent border border-indigo-500/20"
+        className="glass-panel rounded-3xl p-6 sm:p-8 relative overflow-hidden dark:!bg-[#0e0e0e] bg-[radial-gradient(ellipse_60%_80%_at_50%_120%,rgba(112,58,179,0.35),transparent_70%)] dark:bg-[radial-gradient(ellipse_60%_80%_at_50%_120%,rgba(112,58,179,0.45),transparent_70%)]"
       >
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <Badge variant="outline" className="bg-indigo-500/10 text-indigo-500 border-indigo-500/30 font-mono text-xs">
-                ⚡ EXECUTIVE COMMAND CENTER
+              <Badge variant="outline" className="border-zinc-500/20 text-zinc-600 dark:text-zinc-300 bg-zinc-500/10 font-mono text-xs">
+                Tableau de bord
               </Badge>
               <span className="text-xs text-zinc-400">Live Sync</span>
             </div>
-            <h1 className="text-2xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white tracking-tight">
-              Bonjour, <span className="indigo-gradient-text">{name}</span> 👋
+            <h1 className="text-3xl sm:text-5xl font-extrabold uppercase text-zinc-900 dark:text-white tracking-tight [font-stretch:75%]">
+              Bonjour, <span>{name}</span> 👋
             </h1>
             <p className="text-sm text-zinc-600 dark:text-zinc-300 max-w-2xl leading-relaxed">
-              Votre tableau de bord récapitule vos <span className="font-bold text-indigo-400">{totalProjects} projets</span> enregistrés et votre activité GitHub en direct.
+              Votre tableau de bord récapitule vos <span className="font-bold text-brand-300">{totalProjects} projets</span> enregistrés et votre activité GitHub en direct.
             </p>
 
             <div className="pt-2 flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400 italic">
-              <Quote className="h-4 w-4 text-indigo-400 shrink-0" />
+              <Quote className="h-4 w-4 text-zinc-400 shrink-0" />
               <span>"The best way to predict the future is to invent it." — Alan Kay</span>
             </div>
           </div>
@@ -210,7 +211,7 @@ export function HomeDashboardView({ onNavigate }: HomeDashboardViewProps) {
           <div className="flex flex-wrap items-center gap-3 shrink-0">
             <Button
               onClick={() => onNavigate("projects")}
-              className="rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2.5 shadow-lg shadow-indigo-600/20"
+              className="rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold px-4 py-2.5 shadow-lg shadow-brand-600/20"
             >
               <Plus className="h-4 w-4 mr-1.5" /> Nouveau Projet
             </Button>
@@ -219,7 +220,7 @@ export function HomeDashboardView({ onNavigate }: HomeDashboardViewProps) {
               variant="outline"
               className="rounded-xl border-zinc-300 dark:border-zinc-700 text-xs font-semibold"
             >
-              <Github className="h-4 w-4 mr-1.5 text-purple-400" /> Profil GitHub
+              <Github className="h-4 w-4 mr-1.5 text-zinc-400" /> Profil GitHub
             </Button>
           </div>
         </div>
@@ -232,7 +233,7 @@ export function HomeDashboardView({ onNavigate }: HomeDashboardViewProps) {
             Métriques Clés en Temps Réel
           </h2>
           <span className="text-xs text-zinc-400 font-mono flex items-center gap-1">
-            {loading && <Loader2 className="h-3 w-3 animate-spin text-purple-500" />} Données API Live
+            {loading && <Loader2 className="h-3 w-3 animate-spin text-zinc-400" />} Données API Live
           </span>
         </div>
 
@@ -243,7 +244,7 @@ export function HomeDashboardView({ onNavigate }: HomeDashboardViewProps) {
             change={`${activeProjects} publics`}
             trend="up"
             icon={FolderGit2}
-            iconColor="text-indigo-500 bg-indigo-500/10"
+            iconColor="text-zinc-600 dark:text-zinc-300 bg-zinc-500/10"
             description="Base de données MongoDB"
           />
           <KpiCard
@@ -283,14 +284,14 @@ export function HomeDashboardView({ onNavigate }: HomeDashboardViewProps) {
           <div className="flex items-center justify-between mb-6">
             <div>
               <h3 className="text-base font-bold text-zinc-900 dark:text-white flex items-center gap-2">
-                <TrendingUp className="h-4 w-4 text-indigo-500" />
+                <TrendingUp className="h-4 w-4 text-zinc-400" />
                 Télémétrie des Sessions (Temps Réel)
               </h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
                 Alimenté en direct par l'API de télémétrie
               </p>
             </div>
-            <Badge variant="outline" className="border-indigo-500/30 text-indigo-500 bg-indigo-500/10 text-xs">
+            <Badge variant="outline" className="border-zinc-500/20 text-zinc-600 dark:text-zinc-300 bg-zinc-500/10 text-xs">
               Live API
             </Badge>
           </div>
@@ -298,18 +299,18 @@ export function HomeDashboardView({ onNavigate }: HomeDashboardViewProps) {
           <div className="h-[240px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={hourlySessions} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#334155" opacity={0.15} />
-                <XAxis dataKey="time" stroke="#94a3b8" fontSize={12} tickLine={false} />
-                <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#2a2a2a" opacity={0.15} />
+                <XAxis dataKey="time" stroke="#8d8d8d" fontSize={12} tickLine={false} />
+                <YAxis stroke="#8d8d8d" fontSize={12} tickLine={false} />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "rgba(15, 23, 42, 0.9)",
+                    backgroundColor: "rgba(20, 20, 20, 0.95)",
                     borderRadius: "10px",
                     color: "#fff",
                     fontSize: "12px",
                   }}
                 />
-                <Area type="monotone" dataKey="sessions" stroke="#6366f1" strokeWidth={3} fill="#6366f1" fillOpacity={0.2} name="Sessions" />
+                <Area type="monotone" dataKey="sessions" stroke="#703ab3" strokeWidth={3} fill="#703ab3" fillOpacity={0.2} name="Sessions" />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -319,7 +320,7 @@ export function HomeDashboardView({ onNavigate }: HomeDashboardViewProps) {
         <div className="glass-panel rounded-2xl p-6 flex flex-col justify-between">
           <div>
             <h3 className="text-base font-bold text-zinc-900 dark:text-white flex items-center gap-2 mb-1">
-              <Cpu className="h-4 w-4 text-purple-500" />
+              <Cpu className="h-4 w-4 text-zinc-400" />
               Stack Tech (Calculée depuis MongoDB)
             </h3>
             <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-4">
@@ -351,7 +352,7 @@ export function HomeDashboardView({ onNavigate }: HomeDashboardViewProps) {
                     </Pie>
                     <Tooltip
                       contentStyle={{
-                        backgroundColor: "rgba(15, 23, 42, 0.9)",
+                        backgroundColor: "rgba(20, 20, 20, 0.95)",
                         borderRadius: "10px",
                         color: "#fff",
                         fontSize: "12px",
@@ -381,10 +382,10 @@ export function HomeDashboardView({ onNavigate }: HomeDashboardViewProps) {
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <h3 className="text-base font-bold text-zinc-900 dark:text-white flex items-center gap-2">
-            <GitCommit className="h-4 w-4 text-purple-500" />
+            <GitCommit className="h-4 w-4 text-zinc-400" />
             Matrice des Contributions GitHub (API GitHub Live)
           </h3>
-          <Badge variant="outline" className="border-purple-500/30 text-purple-400 bg-purple-500/10 text-xs font-mono">
+          <Badge variant="outline" className="border-zinc-500/20 text-zinc-600 dark:text-zinc-300 bg-zinc-500/10 text-xs font-mono">
             @{username}
           </Badge>
         </div>
@@ -397,7 +398,7 @@ export function HomeDashboardView({ onNavigate }: HomeDashboardViewProps) {
         <div className="glass-panel rounded-2xl p-5 space-y-3">
           <div className="flex items-center justify-between">
             <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400 flex items-center gap-1.5">
-              <FileText className="h-3.5 w-3.5 text-indigo-500" />
+              <FileText className="h-3.5 w-3.5 text-zinc-400" />
               Notes Rapides (Scratchpad)
             </h4>
             <Badge variant="outline" className="text-[10px] text-zinc-400">Enregistrement automatique</Badge>
@@ -406,7 +407,7 @@ export function HomeDashboardView({ onNavigate }: HomeDashboardViewProps) {
             placeholder="Écrivez vos notes ici (sauvegardées automatiquement dans le navigateur)..."
             value={quickNote}
             onChange={(e) => handleNoteChange(e.target.value)}
-            className="w-full h-32 p-3 text-xs bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800/60 rounded-xl resize-none focus:outline-none focus:ring-1 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-200"
+            className="w-full h-32 p-3 text-xs bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800/60 rounded-xl resize-none focus:outline-none focus:ring-1 focus:ring-brand-500 text-zinc-800 dark:text-zinc-200"
           />
         </div>
 

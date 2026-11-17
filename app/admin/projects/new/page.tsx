@@ -24,6 +24,7 @@ import {
   Loader2,
 } from "lucide-react";
 import Image from "next/image";
+import { TechSuggestions } from "@/components/admin/TechSuggestions";
 
 export default function NewProject() {
   const [formData, setFormData] = useState({
@@ -170,33 +171,33 @@ export default function NewProject() {
   };
 
   return (
-    <div className="h-screen overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="h-screen overflow-hidden bg-background">
       <div className="h-full flex flex-col">
         {/* Header fixe */}
-        <div className="flex-shrink-0 bg-white border-b border-gray-200 px-6 py-4">
+        <div className="flex-shrink-0 bg-card border-b border-border px-6 py-4">
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <Button
                   variant="ghost"
-                  className="text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                  className="text-muted-foreground hover:text-foreground hover:bg-muted"
                   onClick={() => router.push("/admin")}
                 >
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   Retour
                 </Button>
-                <div className="h-8 w-px bg-gray-300" />
+                <div className="h-8 w-px bg-border" />
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-900">
+                  <h1 className="text-2xl font-bold text-foreground">
                     Nouveau Projet
                   </h1>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Créez un nouveau projet pour votre portfolio
                   </p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg">
+                <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-muted text-foreground rounded-lg">
                   <LayoutGrid className="h-4 w-4" />
                   <span className="text-sm font-medium">Édition</span>
                 </div>
@@ -212,7 +213,7 @@ export default function NewProject() {
               {/* Colonne gauche - Formulaire compact */}
               <div className="lg:col-span-2 h-full overflow-hidden">
                 <Card className="h-full border-0 shadow-md overflow-hidden">
-                  <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4">
+                  <CardHeader className="bg-zinc-900 dark:bg-white/[0.04] dark:border-b dark:border-border text-white py-4">
                     <CardTitle className="text-xl flex items-center gap-2">
                       <div className="bg-white/20 p-1.5 rounded-lg">
                         <LayoutGrid className="h-5 w-5" />
@@ -300,19 +301,19 @@ export default function NewProject() {
                           Image du projet *
                         </Label>
                         <div className="space-y-2">
-                          <div className="border border-dashed border-gray-300 rounded-lg p-3 bg-gray-50/50">
+                          <div className="border border-dashed border-border rounded-lg p-3 bg-muted/30">
                             <div className="flex items-center justify-between gap-3">
                               <div className="flex items-center gap-3 flex-1">
-                                <div className="p-2 bg-blue-100 rounded-lg">
-                                  <ImageIcon className="h-4 w-4 text-blue-600" />
+                                <div className="p-2 bg-muted rounded-lg">
+                                  <ImageIcon className="h-4 w-4 text-foreground" />
                                 </div>
                                 <div className="min-w-0 flex-1">
-                                  <p className="text-sm text-gray-700 truncate">
+                                  <p className="text-sm text-foreground/80 truncate">
                                     {selectedFile
                                       ? selectedFile.name
                                       : "Sélectionnez une image"}
                                   </p>
-                                  <p className="text-xs text-gray-500">
+                                  <p className="text-xs text-muted-foreground">
                                     PNG, JPG, WebP • Max 5MB
                                   </p>
                                 </div>
@@ -333,7 +334,7 @@ export default function NewProject() {
                                     onClick={handleImageUpload}
                                     disabled={uploading}
                                     size="sm"
-                                    className="h-8 text-xs bg-blue-600 hover:bg-blue-700"
+                                    className="h-8 text-xs bg-brand-600 hover:bg-brand-700"
                                   >
                                     {uploading ? "..." : "Upload"}
                                   </Button>
@@ -371,6 +372,10 @@ export default function NewProject() {
                             }
                             className="h-10 text-sm"
                             placeholder="React, Node.js, ..."
+                          />
+                          <TechSuggestions
+                            value={formData.technologies}
+                            onChange={(technologies) => setFormData((prev) => ({ ...prev, technologies }))}
                           />
                         </div>
 
@@ -449,9 +454,9 @@ export default function NewProject() {
                       <div className="space-y-3">
                         <Label className="text-sm font-medium">Options</Label>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                          <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                          <div className="flex items-center justify-between p-3 bg-muted/40 rounded-lg">
                             <div className="flex items-center gap-2">
-                              <Lock className="h-4 w-4 text-gray-600" />
+                              <Lock className="h-4 w-4 text-muted-foreground" />
                               <span className="text-sm">Privé</span>
                             </div>
                             <Switch
@@ -467,9 +472,9 @@ export default function NewProject() {
                             />
                           </div>
 
-                          <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                          <div className="flex items-center justify-between p-3 bg-muted/40 rounded-lg">
                             <div className="flex items-center gap-2">
-                              <Star className="h-4 w-4 text-gray-600" />
+                              <Star className="h-4 w-4 text-muted-foreground" />
                               <span className="text-sm">En avant</span>
                             </div>
                             <Switch
@@ -495,7 +500,7 @@ export default function NewProject() {
               <div className="h-full flex flex-col gap-6">
                 {/* Preview de l'image */}
                 <Card className="flex-1 border-0 shadow-md overflow-hidden">
-                  <CardHeader className="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-4">
+                  <CardHeader className="bg-zinc-900 dark:bg-white/[0.04] dark:border-b dark:border-border text-white py-4">
                     <CardTitle className="text-xl flex items-center gap-2">
                       <ImageIcon className="h-5 w-5" />
                       Aperçu
@@ -504,7 +509,7 @@ export default function NewProject() {
                   <CardContent className="p-4 h-[calc(100%-73px)] flex flex-col">
                     {previewUrl || formData.image ? (
                       <>
-                        <div className="flex-1 relative rounded-lg overflow-hidden border border-gray-200 bg-gray-50">
+                        <div className="flex-1 relative rounded-lg overflow-hidden border border-border bg-muted/40">
                           <Image
                             src={previewUrl || formData.image}
                             alt="Preview"
@@ -513,15 +518,15 @@ export default function NewProject() {
                             sizes="(max-width: 768px) 100vw, 50vw"
                           />
                         </div>
-                        <div className="pt-4 mt-4 border-t border-gray-200">
+                        <div className="pt-4 mt-4 border-t border-border">
                           <div className="flex items-center justify-between">
-                            <span className="text-sm text-gray-600">
+                            <span className="text-sm text-muted-foreground">
                               {selectedFile ? (
                                 <>
                                   <span className="font-medium">
                                     {selectedFile.name}
                                   </span>
-                                  <span className="text-gray-500 ml-2">
+                                  <span className="text-muted-foreground ml-2">
                                     (
                                     {(selectedFile.size / 1024 / 1024).toFixed(
                                       2
@@ -540,7 +545,7 @@ export default function NewProject() {
                                 type="button"
                                 variant="ghost"
                                 size="sm"
-                                className="h-8 text-red-600 hover:text-red-700 hover:bg-red-50"
+                                className="h-8 text-red-600 hover:text-red-700 hover:bg-red-500/10"
                                 onClick={() => {
                                   setSelectedFile(null);
                                   setPreviewUrl("");
@@ -560,14 +565,14 @@ export default function NewProject() {
                         </div>
                       </>
                     ) : (
-                      <div className="h-full flex flex-col items-center justify-center text-gray-400 p-8">
-                        <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+                      <div className="h-full flex flex-col items-center justify-center text-muted-foreground p-8">
+                        <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center mb-4">
                           <ImageIcon className="h-12 w-12" />
                         </div>
-                        <p className="text-center font-medium text-gray-600 mb-1">
+                        <p className="text-center font-medium text-muted-foreground mb-1">
                           Aucune image sélectionnée
                         </p>
-                        <p className="text-center text-sm text-gray-500">
+                        <p className="text-center text-sm text-muted-foreground">
                           Une image est requise pour publier
                         </p>
                       </div>
@@ -581,18 +586,18 @@ export default function NewProject() {
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="font-medium text-gray-900">
+                          <p className="font-medium text-foreground">
                             Créer le projet
                           </p>
-                          <p className="text-xs text-gray-500">
+                          <p className="text-xs text-muted-foreground">
                             Tous les champs * sont requis
                           </p>
                         </div>
                         <div
                           className={`px-3 py-1 rounded-full text-sm font-medium ${
                             formData.image
-                              ? "bg-green-100 text-green-800"
-                              : "bg-red-100 text-red-800"
+                              ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400"
+                              : "bg-red-500/15 text-red-600 dark:text-red-400"
                           }`}
                         >
                           {formData.image ? "Prêt" : "Image manquante"}
@@ -612,7 +617,7 @@ export default function NewProject() {
                           type="submit"
                           onClick={handleSubmit}
                           disabled={loading || !formData.image}
-                          className="flex-1 h-11 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+                          className="flex-1 h-11 bg-brand-600 hover:bg-brand-700 text-white"
                         >
                           {loading ? (
                             <>
@@ -626,7 +631,7 @@ export default function NewProject() {
                       </div>
 
                       <div className="text-center">
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-muted-foreground">
                           Le projet sera visible après validation
                         </p>
                       </div>

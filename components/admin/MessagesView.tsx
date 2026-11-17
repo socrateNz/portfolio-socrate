@@ -121,10 +121,10 @@ export function MessagesView() {
                 }}
                 className={`p-3.5 rounded-xl border cursor-pointer transition-all ${
                   selectedMessage?.id === msg.id
-                    ? "bg-indigo-600/10 border-indigo-500/40 shadow-sm"
+                    ? "bg-brand-600/10 border-brand-500/40 shadow-sm"
                     : msg.read
                     ? "bg-white/40 dark:bg-zinc-900/40 border-zinc-200/60 dark:border-zinc-800/60 opacity-80"
-                    : "bg-white dark:bg-zinc-900 border-indigo-500/30 shadow-sm font-semibold"
+                    : "bg-white dark:bg-zinc-900 border-brand-500/30 shadow-sm font-semibold"
                 }`}
               >
                 <div className="flex items-center justify-between gap-2 mb-1">
@@ -151,7 +151,7 @@ export function MessagesView() {
                     <span className="font-semibold text-zinc-900 dark:text-white">{selectedMessage.name}</span>
                     <span>({selectedMessage.email})</span>
                     <span>•</span>
-                    <Badge className="bg-indigo-500/10 text-indigo-500 border-indigo-500/30 text-[10px]">
+                    <Badge className="border-zinc-500/20 text-zinc-600 dark:text-zinc-300 bg-zinc-500/10 text-[10px]">
                       {selectedMessage.company} ({selectedMessage.role})
                     </Badge>
                   </div>
@@ -167,16 +167,16 @@ export function MessagesView() {
               {/* Reply Box */}
               <div className="space-y-3 pt-4 border-t border-zinc-100 dark:border-zinc-800/60">
                 <h4 className="text-xs font-bold text-zinc-400 uppercase flex items-center gap-1.5">
-                  <Reply className="h-3.5 w-3.5 text-indigo-500" /> Répondre à {selectedMessage.name}
+                  <Reply className="h-3.5 w-3.5 text-zinc-400" /> Répondre à {selectedMessage.name}
                 </h4>
                 <textarea
                   value={replyText}
                   onChange={(e) => setReplyText(e.target.value)}
                   placeholder={`Bonjour ${selectedMessage.name}, merci pour votre message...`}
-                  className="w-full h-24 p-3 text-xs bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl resize-none focus:outline-none focus:ring-1 focus:ring-indigo-500 text-zinc-900 dark:text-white"
+                  className="w-full h-24 p-3 text-xs bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl resize-none focus:outline-none focus:ring-1 focus:ring-brand-500 text-zinc-900 dark:text-white"
                 />
                 <div className="flex justify-end gap-2">
-                  <Button onClick={handleSendReply} size="sm" className="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold gap-1.5 rounded-xl">
+                  <Button onClick={handleSendReply} size="sm" className="bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold gap-1.5 rounded-xl">
                     <Send className="h-3.5 w-3.5" /> Envoyer la Réponse
                   </Button>
                 </div>

@@ -28,6 +28,7 @@ import {
   LayoutGrid,
 } from "lucide-react"
 
+import { TechSuggestions } from "@/components/admin/TechSuggestions"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
@@ -422,7 +423,7 @@ export function ProjectsView() {
 
           <Button
             onClick={handleOpenNewDialog}
-            className="rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold gap-1.5 shadow-md shadow-indigo-600/20"
+            className="rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold gap-1.5 shadow-md shadow-brand-600/20"
           >
             <Plus className="h-4 w-4" /> Nouveau Projet (Dialog)
           </Button>
@@ -434,7 +435,7 @@ export function ProjectsView() {
         <DialogContent className="glass-panel sm:max-w-2xl rounded-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-lg font-bold flex items-center gap-2">
-              <FolderGit2 className="h-5 w-5 text-indigo-500" />
+              <FolderGit2 className="h-5 w-5 text-zinc-400" />
               {editingProject ? `Éditer "${editingProject.title}"` : "Nouveau Projet Executive"}
             </DialogTitle>
             <DialogDescription className="text-xs text-zinc-500">
@@ -482,7 +483,7 @@ export function ProjectsView() {
             {/* Image Upload & URL */}
             <div className="space-y-2 p-3.5 rounded-xl bg-zinc-50/60 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800/60">
               <Label className="text-xs font-semibold flex items-center gap-1.5">
-                <ImageIcon className="h-4 w-4 text-indigo-500" /> Image du Projet (URL ou Fichier local) *
+                <ImageIcon className="h-4 w-4 text-zinc-400" /> Image du Projet (URL ou Fichier local) *
               </Label>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 items-center">
@@ -536,7 +537,7 @@ export function ProjectsView() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <Label className="text-xs font-semibold flex items-center gap-1.5">
-                  <Cpu className="h-3.5 w-3.5 text-sky-500" /> Technologies (séparées par des virgules)
+                  <Cpu className="h-3.5 w-3.5 text-zinc-400" /> Technologies (séparées par des virgules)
                 </Label>
                 <Input
                   placeholder="Next.js 16, TypeScript, Docker"
@@ -544,11 +545,12 @@ export function ProjectsView() {
                   onChange={(e) => setFormData({ ...formData, technologies: e.target.value })}
                   className="mt-1 text-xs"
                 />
+                <TechSuggestions value={formData.technologies} onChange={(technologies) => setFormData({ ...formData, technologies })} />
               </div>
 
               <div>
                 <Label className="text-xs font-semibold flex items-center gap-1.5">
-                  <ListChecks className="h-3.5 w-3.5 text-purple-500" /> Tâches & Réalisations (virgules)
+                  <ListChecks className="h-3.5 w-3.5 text-zinc-400" /> Tâches & Réalisations (virgules)
                 </Label>
                 <Input
                   placeholder="Architecture, Vector DB, Optimization"
@@ -563,7 +565,7 @@ export function ProjectsView() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <Label className="text-xs font-semibold flex items-center gap-1.5">
-                  <Github className="h-3.5 w-3.5 text-purple-400" /> URL GitHub (Repository)
+                  <Github className="h-3.5 w-3.5 text-zinc-400" /> URL GitHub (Repository)
                 </Label>
                 <Input
                   placeholder="https://github.com/..."
@@ -600,7 +602,7 @@ export function ProjectsView() {
                     <span>En Vedette</span>
                   </Label>
                 </div>
-                <span className={`text-[10px] px-1.5 py-0.5 rounded-md font-mono font-bold ${formData.featured ? "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20" : "bg-zinc-200 dark:bg-zinc-800 text-zinc-500"}`}>
+                <span className={`text-[10px] px-1.5 py-0.5 rounded-md font-mono font-bold ${formData.featured ? "bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-500/20" : "bg-zinc-200 dark:bg-zinc-800 text-zinc-500"}`}>
                   {formData.featured ? "ACTIVÉ" : "DÉSACTIVÉ"}
                 </span>
               </div>
@@ -627,7 +629,7 @@ export function ProjectsView() {
               <Button type="button" variant="ghost" onClick={() => setIsDialogOpen(false)} className="text-xs">
                 Annuler
               </Button>
-              <Button type="submit" disabled={saving} className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs gap-1.5 rounded-xl shadow-md">
+              <Button type="submit" disabled={saving} className="bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs gap-1.5 rounded-xl shadow-md">
                 {saving ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Save className="h-3.5 w-3.5" />}
                 {editingProject ? "Enregistrer les Modifications" : "Publier le Projet"}
               </Button>
@@ -691,7 +693,7 @@ export function ProjectsView() {
 
       {loading ? (
         <div className="flex items-center justify-center py-12 text-zinc-400 text-xs gap-2">
-          <Loader2 className="h-5 w-5 animate-spin text-indigo-500" />
+          <Loader2 className="h-5 w-5 animate-spin text-zinc-400" />
           <span>Chargement des projets depuis MongoDB...</span>
         </div>
       ) : viewMode === "grid" ? (
@@ -765,7 +767,7 @@ export function ProjectsView() {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => handleOpenEditDialog(p)}
-                      className="p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-indigo-500 font-semibold flex items-center gap-1"
+                      className="p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-brand-400 font-semibold flex items-center gap-1"
                       title="Éditer le projet"
                     >
                       <Edit className="h-3.5 w-3.5" /> Éditer
@@ -824,7 +826,7 @@ export function ProjectsView() {
                     <td className="py-3 flex items-center gap-2">
                       <button
                         onClick={() => handleOpenEditDialog(p)}
-                        className="text-indigo-500 font-semibold hover:underline flex items-center gap-1"
+                        className="text-brand-400 font-semibold hover:underline flex items-center gap-1"
                       >
                         <Edit className="h-3 w-3" /> Éditer
                       </button>

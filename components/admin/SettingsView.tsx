@@ -47,7 +47,7 @@ export function SettingsView() {
             <button
               onClick={() => setTheme("light")}
               className={`p-4 rounded-xl border flex flex-col items-center gap-2 text-xs font-semibold ${
-                theme === "light" ? "border-indigo-500 bg-indigo-500/10 text-indigo-500" : "border-zinc-200 dark:border-zinc-800 text-zinc-500"
+                theme === "light" ? "border-brand-500 bg-brand-500/10 text-brand-400" : "border-zinc-200 dark:border-zinc-800 text-zinc-500"
               }`}
             >
               <Sun className="h-5 w-5 text-amber-500" /> Mode Clair
@@ -55,15 +55,15 @@ export function SettingsView() {
             <button
               onClick={() => setTheme("dark")}
               className={`p-4 rounded-xl border flex flex-col items-center gap-2 text-xs font-semibold ${
-                theme === "dark" ? "border-indigo-500 bg-indigo-500/10 text-indigo-500" : "border-zinc-200 dark:border-zinc-800 text-zinc-500"
+                theme === "dark" ? "border-brand-500 bg-brand-500/10 text-brand-400" : "border-zinc-200 dark:border-zinc-800 text-zinc-500"
               }`}
             >
-              <Moon className="h-5 w-5 text-indigo-400" /> Mode Sombre
+              <Moon className="h-5 w-5 text-zinc-400" /> Mode Sombre
             </button>
             <button
               onClick={() => setTheme("system")}
               className={`p-4 rounded-xl border flex flex-col items-center gap-2 text-xs font-semibold ${
-                theme === "system" ? "border-indigo-500 bg-indigo-500/10 text-indigo-500" : "border-zinc-200 dark:border-zinc-800 text-zinc-500"
+                theme === "system" ? "border-brand-500 bg-brand-500/10 text-brand-400" : "border-zinc-200 dark:border-zinc-800 text-zinc-500"
               }`}
             >
               <Laptop className="h-5 w-5 text-zinc-400" /> Système
@@ -103,7 +103,7 @@ export function SettingsView() {
           </div>
         </div>
 
-        <Button onClick={handleSave} className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs gap-1.5 rounded-xl">
+        <Button onClick={handleSave} className="bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs gap-1.5 rounded-xl">
           <Save className="h-4 w-4" /> Enregistrer les Modifications
         </Button>
       </div>

@@ -26,6 +26,7 @@ import {
   Eye,
 } from "lucide-react";
 import Image from "next/image";
+import { TechSuggestions } from "@/components/admin/TechSuggestions";
 
 interface Project {
   _id: string;
@@ -235,35 +236,35 @@ export default function EditProject() {
 
   if (loading) {
     return (
-      <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mb-4"></div>
-        <p className="text-lg text-gray-700">Chargement du projet...</p>
+      <div className="h-screen flex flex-col items-center justify-center bg-background">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-600 mb-4"></div>
+        <p className="text-lg text-foreground/80">Chargement du projet...</p>
       </div>
     );
   }
 
   return (
-    <div className="h-screen overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="h-screen overflow-hidden bg-background">
       <div className="h-full flex flex-col">
         {/* Header fixe */}
-        <div className="flex-shrink-0 bg-white border-b border-gray-200 px-6 py-4">
+        <div className="flex-shrink-0 bg-card border-b border-border px-6 py-4">
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <Button
                   variant="ghost"
-                  className="text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                  className="text-muted-foreground hover:text-foreground hover:bg-muted"
                   onClick={() => router.push("/admin")}
                 >
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   Retour
                 </Button>
-                <div className="h-8 w-px bg-gray-300" />
+                <div className="h-8 w-px bg-border" />
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-900">
+                  <h1 className="text-2xl font-bold text-foreground">
                     Modifier le Projet
                   </h1>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Mettez à jour les informations du projet
                   </p>
                 </div>
@@ -273,14 +274,14 @@ export default function EditProject() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="border-green-600 text-green-700 hover:bg-green-50"
+                    className="border-green-600 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/10"
                     onClick={() => window.open(formData.liveUrl, "_blank")}
                   >
                     <Eye className="h-4 w-4 mr-2" />
                     Voir le projet
                   </Button>
                 )}
-                <div className="px-3 py-1.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg">
+                <div className="px-3 py-1.5 bg-muted text-foreground rounded-lg">
                   <span className="text-sm font-medium">Édition</span>
                 </div>
               </div>
@@ -295,7 +296,7 @@ export default function EditProject() {
               {/* Colonne gauche - Formulaire compact */}
               <div className="lg:col-span-2 h-full overflow-hidden">
                 <Card className="h-full border-0 shadow-md overflow-hidden">
-                  <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4">
+                  <CardHeader className="bg-zinc-900 dark:bg-white/[0.04] dark:border-b dark:border-border text-white py-4">
                     <CardTitle className="text-xl flex items-center gap-2">
                       <div className="bg-white/20 p-1.5 rounded-lg">
                         <LayoutGrid className="h-5 w-5" />
@@ -376,7 +377,7 @@ export default function EditProject() {
                           placeholder="Décrivez votre projet..."
                         />
                         <div className="flex justify-between items-center">
-                          <p className="text-xs text-gray-500">
+                          <p className="text-xs text-muted-foreground">
                             {formData.description.length}/500 caractères
                           </p>
                           {formData.description.length > 450 && (
@@ -399,19 +400,19 @@ export default function EditProject() {
                         </Label>
 
                         <div className="space-y-2">
-                          <div className="border border-dashed border-gray-300 rounded-lg p-3 bg-gray-50/50">
+                          <div className="border border-dashed border-border rounded-lg p-3 bg-muted/30">
                             <div className="flex items-center justify-between gap-3">
                               <div className="flex items-center gap-3 flex-1">
-                                <div className="p-2 bg-blue-100 rounded-lg">
-                                  <ImageIcon className="h-4 w-4 text-blue-600" />
+                                <div className="p-2 bg-muted rounded-lg">
+                                  <ImageIcon className="h-4 w-4 text-foreground" />
                                 </div>
                                 <div className="min-w-0 flex-1">
-                                  <p className="text-sm text-gray-700 truncate">
+                                  <p className="text-sm text-foreground/80 truncate">
                                     {selectedFile
                                       ? selectedFile.name
                                       : "Changer l'image"}
                                   </p>
-                                  <p className="text-xs text-gray-500">
+                                  <p className="text-xs text-muted-foreground">
                                     PNG, JPG, WebP • Max 5MB
                                   </p>
                                 </div>
@@ -432,7 +433,7 @@ export default function EditProject() {
                                     onClick={handleImageUpload}
                                     disabled={uploading}
                                     size="sm"
-                                    className="h-8 text-xs bg-blue-600 hover:bg-blue-700"
+                                    className="h-8 text-xs bg-brand-600 hover:bg-brand-700"
                                   >
                                     {uploading ? "..." : "Upload"}
                                   </Button>
@@ -452,7 +453,7 @@ export default function EditProject() {
                           <div className="space-y-2">
                             <Label
                               htmlFor="imageUrl"
-                              className="text-xs text-gray-600"
+                              className="text-xs text-muted-foreground"
                             >
                               Ou entrez directement une URL d'image
                             </Label>
@@ -495,7 +496,11 @@ export default function EditProject() {
                             className="h-10 text-sm"
                             placeholder="React, Node.js, MongoDB..."
                           />
-                          <p className="text-xs text-gray-500">
+                          <TechSuggestions
+                            value={formData.technologies}
+                            onChange={(technologies) => setFormData((prev) => ({ ...prev, technologies }))}
+                          />
+                          <p className="text-xs text-muted-foreground">
                             Séparées par des virgules
                           </p>
                         </div>
@@ -520,7 +525,7 @@ export default function EditProject() {
                             className="h-10 text-sm"
                             placeholder="Design UI, API, Tests..."
                           />
-                          <p className="text-xs text-gray-500">
+                          <p className="text-xs text-muted-foreground">
                             Séparées par des virgules
                           </p>
                         </div>
@@ -580,20 +585,20 @@ export default function EditProject() {
                           Options du projet
                         </Label>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                          <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                          <div className="flex items-center justify-between p-3 bg-muted/40 rounded-lg hover:bg-muted transition-colors">
                             <div className="flex items-center gap-2">
                               <div
                                 className={`p-2 rounded-lg ${
                                   formData.private
-                                    ? "bg-purple-100"
-                                    : "bg-gray-100"
+                                    ? "bg-brand-100"
+                                    : "bg-muted"
                                 }`}
                               >
                                 <Lock
                                   className={`h-4 w-4 ${
                                     formData.private
-                                      ? "text-purple-600"
-                                      : "text-gray-400"
+                                      ? "text-brand-600 dark:text-brand-300"
+                                      : "text-muted-foreground"
                                   }`}
                                 />
                               </div>
@@ -601,7 +606,7 @@ export default function EditProject() {
                                 <p className="text-sm font-medium">
                                   Projet privé
                                 </p>
-                                <p className="text-xs text-gray-500">
+                                <p className="text-xs text-muted-foreground">
                                   Non visible publiquement
                                 </p>
                               </div>
@@ -615,24 +620,24 @@ export default function EditProject() {
                                   private: checked,
                                 }))
                               }
-                              className="data-[state=checked]:bg-purple-600"
+                              className="data-[state=checked]:bg-brand-600"
                             />
                           </div>
 
-                          <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                          <div className="flex items-center justify-between p-3 bg-muted/40 rounded-lg hover:bg-muted transition-colors">
                             <div className="flex items-center gap-2">
                               <div
                                 className={`p-2 rounded-lg ${
                                   formData.featured
                                     ? "bg-yellow-100"
-                                    : "bg-gray-100"
+                                    : "bg-muted"
                                 }`}
                               >
                                 <Star
                                   className={`h-4 w-4 ${
                                     formData.featured
                                       ? "text-yellow-600"
-                                      : "text-gray-400"
+                                      : "text-muted-foreground"
                                   }`}
                                 />
                               </div>
@@ -640,7 +645,7 @@ export default function EditProject() {
                                 <p className="text-sm font-medium">
                                   Mis en avant
                                 </p>
-                                <p className="text-xs text-gray-500">
+                                <p className="text-xs text-muted-foreground">
                                   Priorité d'affichage
                                 </p>
                               </div>
@@ -668,7 +673,7 @@ export default function EditProject() {
               <div className="h-full flex flex-col gap-6">
                 {/* Preview de l'image */}
                 <Card className="flex-1 border-0 shadow-md overflow-hidden">
-                  <CardHeader className="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-4">
+                  <CardHeader className="bg-zinc-900 dark:bg-white/[0.04] dark:border-b dark:border-border text-white py-4">
                     <CardTitle className="text-xl flex items-center gap-2">
                       <ImageIcon className="h-5 w-5" />
                       Aperçu actuel
@@ -677,7 +682,7 @@ export default function EditProject() {
                   <CardContent className="p-4 h-[calc(100%-73px)] flex flex-col">
                     {formData.image ? (
                       <>
-                        <div className="flex-1 relative rounded-lg overflow-hidden border border-gray-200 bg-gray-50">
+                        <div className="flex-1 relative rounded-lg overflow-hidden border border-border bg-muted/40">
                           <Image
                             src={previewUrl || formData.image}
                             alt="Preview"
@@ -686,15 +691,15 @@ export default function EditProject() {
                             sizes="(max-width: 768px) 100vw, 50vw"
                           />
                         </div>
-                        <div className="pt-4 mt-4 border-t border-gray-200">
+                        <div className="pt-4 mt-4 border-t border-border">
                           <div className="flex items-center justify-between">
-                            <span className="text-sm text-gray-600">
+                            <span className="text-sm text-muted-foreground">
                               {selectedFile ? (
                                 <>
                                   <span className="font-medium">
                                     Nouvelle image
                                   </span>
-                                  <span className="text-gray-500 ml-2">
+                                  <span className="text-muted-foreground ml-2">
                                     (
                                     {(selectedFile.size / 1024 / 1024).toFixed(
                                       2
@@ -713,7 +718,7 @@ export default function EditProject() {
                                 type="button"
                                 variant="ghost"
                                 size="sm"
-                                className="h-8 text-red-600 hover:text-red-700 hover:bg-red-50"
+                                className="h-8 text-red-600 hover:text-red-700 hover:bg-red-500/10"
                                 onClick={() => {
                                   setSelectedFile(null);
                                   setPreviewUrl("");
@@ -733,14 +738,14 @@ export default function EditProject() {
                         </div>
                       </>
                     ) : (
-                      <div className="h-full flex flex-col items-center justify-center text-gray-400 p-8">
-                        <div className="w-24 h-24 rounded-full bg-red-100 flex items-center justify-center mb-4">
+                      <div className="h-full flex flex-col items-center justify-center text-muted-foreground p-8">
+                        <div className="w-24 h-24 rounded-full bg-red-500/15 flex items-center justify-center mb-4">
                           <X className="h-12 w-12 text-red-400" />
                         </div>
-                        <p className="text-center font-medium text-gray-600 mb-1">
+                        <p className="text-center font-medium text-muted-foreground mb-1">
                           Image manquante
                         </p>
-                        <p className="text-center text-sm text-gray-500">
+                        <p className="text-center text-sm text-muted-foreground">
                           Une image est requise pour publier
                         </p>
                       </div>
@@ -754,18 +759,18 @@ export default function EditProject() {
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="font-medium text-gray-900">
+                          <p className="font-medium text-foreground">
                             Sauvegarder les modifications
                           </p>
-                          <p className="text-xs text-gray-500">
+                          <p className="text-xs text-muted-foreground">
                             Tous les champs * sont requis
                           </p>
                         </div>
                         <div
                           className={`px-3 py-1 rounded-full text-sm font-medium ${
                             formData.image
-                              ? "bg-green-100 text-green-800"
-                              : "bg-red-100 text-red-800"
+                              ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400"
+                              : "bg-red-500/15 text-red-600 dark:text-red-400"
                           }`}
                         >
                           {formData.image ? "Prêt" : "Image manquante"}
@@ -785,7 +790,7 @@ export default function EditProject() {
                           type="submit"
                           onClick={handleSubmit}
                           disabled={saving || !formData.image}
-                          className="h-11 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+                          className="h-11 bg-brand-600 hover:bg-brand-700 text-white"
                         >
                           {saving ? (
                             <>
@@ -801,8 +806,8 @@ export default function EditProject() {
                         </Button>
                       </div>
 
-                      <div className="text-center pt-2 border-t border-gray-100">
-                        <p className="text-xs text-gray-500">
+                      <div className="text-center pt-2 border-t border-border">
+                        <p className="text-xs text-muted-foreground">
                           Les modifications seront appliquées immédiatement
                         </p>
                       </div>

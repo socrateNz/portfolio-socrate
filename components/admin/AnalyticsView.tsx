@@ -109,7 +109,7 @@ export function AnalyticsView() {
                 Configuration de l'API @vercel/analytics requis
               </h3>
               <p className="text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
-                Pour afficher les analyses en direct provenant de Vercel Web Analytics sur cet écran, ajoutez vos identifiants Vercel dans <code className="text-purple-400 font-mono font-bold">.env.local</code> :
+                Pour afficher les analyses en direct provenant de Vercel Web Analytics sur cet écran, ajoutez vos identifiants Vercel dans <code className="text-brand-300 font-mono font-bold">.env.local</code> :
               </p>
 
               <div className="p-4 rounded-xl bg-zinc-950 border border-zinc-800 text-xs font-mono text-emerald-400 space-y-1">
@@ -123,7 +123,7 @@ export function AnalyticsView() {
                   href="https://vercel.com/account/tokens"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs shadow-lg transition-all"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs shadow-lg transition-all"
                 >
                   <Zap className="h-3.5 w-3.5" /> Générer un Token API Vercel <ExternalLink className="h-3 w-3" />
                 </a>
@@ -156,7 +156,7 @@ export function AnalyticsView() {
           <p className="text-2xl font-black text-zinc-900 dark:text-white">
             {summary.bounceRate}
           </p>
-          <span className="text-xs font-semibold text-purple-400">Vercel Insights</span>
+          <span className="text-xs font-semibold text-brand-300">Vercel Insights</span>
         </div>
 
         <div className="glass-card rounded-2xl p-5 space-y-1">
@@ -164,7 +164,7 @@ export function AnalyticsView() {
           <p className="text-2xl font-black text-zinc-900 dark:text-white">
             {summary.avgDuration}
           </p>
-          <span className="text-xs font-semibold text-purple-400">Durée de consultation</span>
+          <span className="text-xs font-semibold text-brand-300">Durée de consultation</span>
         </div>
       </div>
 
@@ -188,7 +188,7 @@ export function AnalyticsView() {
           {/* Device Breakdown Donut */}
           <div className="glass-panel rounded-2xl p-6 space-y-4">
             <h3 className="text-base font-bold text-zinc-900 dark:text-white flex items-center gap-2">
-              <Monitor className="h-4 w-4 text-purple-500" />
+              <Monitor className="h-4 w-4 text-zinc-400" />
               Appareils & Navigateurs (Vercel Data)
             </h3>
 
@@ -224,7 +224,7 @@ export function AnalyticsView() {
                 <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800/60">
                   {popularPages.map((row: any, idx: number) => (
                     <tr key={idx} className="hover:bg-zinc-50/50 dark:hover:bg-zinc-900/40">
-                      <td className="py-3 font-mono font-semibold text-indigo-500">{row.page}</td>
+                      <td className="py-3 font-mono font-semibold text-brand-400">{row.page}</td>
                       <td className="py-3 font-bold text-zinc-900 dark:text-white">{row.views ? row.views.toLocaleString() : 0}</td>
                     </tr>
                   ))}

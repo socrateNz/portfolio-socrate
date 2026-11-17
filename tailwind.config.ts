@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss"
+import defaultTheme from "tailwindcss/defaultTheme"
 
 const config: Config = {
   darkMode: ["class"],
@@ -18,7 +19,27 @@ const config: Config = {
       },
     },
     extend: {
+      fontFamily: {
+        // Same faces as the public site (loaded via next/font in each layout)
+        sans: ["var(--font-mona)", ...defaultTheme.fontFamily.sans],
+        mono: ["var(--font-dm-mono)", ...defaultTheme.fontFamily.mono],
+      },
       colors: {
+        // Brand accent #703AB3 — reserved for primary actions and key highlights
+        brand: {
+          50: "#f5f0fb",
+          100: "#ebe0f7",
+          200: "#d6c2ef",
+          300: "#bb9be3",
+          400: "#a47ad8",
+          500: "#8c5cc9",
+          600: "#703ab3",
+          700: "#5f2f9a",
+          800: "#4a2578",
+          900: "#351a56",
+          950: "#1f0f33",
+          DEFAULT: "#703ab3",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

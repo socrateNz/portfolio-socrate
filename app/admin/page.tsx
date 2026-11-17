@@ -67,7 +67,7 @@ export default function AdminDashboardPage() {
   }
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-zinc-50/60 dark:bg-zinc-950 font-sans antialiased text-zinc-900 dark:text-zinc-100">
+    <div className="flex h-screen w-full overflow-hidden bg-zinc-50/60 dark:bg-[#0e0e0e] font-sans antialiased text-zinc-900 dark:text-zinc-100">
       {/* 1. Linear / Vercel Collapsible Sidebar */}
       <AdminSidebar
         activeTab={activeTab}

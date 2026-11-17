@@ -23,7 +23,7 @@ export function KpiCard({
   trend = "up",
   period = "ce mois",
   icon: Icon,
-  iconColor = "text-indigo-500 bg-indigo-500/10",
+  iconColor = "text-zinc-600 dark:text-zinc-300 bg-zinc-500/10",
   sparklineData = [12, 18, 15, 24, 30, 28, 36],
   description,
 }: KpiCardProps) {
@@ -94,7 +94,7 @@ export function KpiCard({
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className={trend === "up" ? "text-emerald-500" : "text-indigo-500"}
+                className={trend === "up" ? "text-emerald-500" : "text-brand-400"}
               />
             </svg>
           </div>

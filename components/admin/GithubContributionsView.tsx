@@ -66,11 +66,11 @@ import type {
 import { downloadContributionsCsv, downloadContributionsPdf, downloadContributionsXlsx } from "@/lib/github/export"
 
 const TYPE_META: Record<ContributionType, { label: string; color: string }> = {
-  commit: { label: "Commits", color: "#6366f1" },
+  commit: { label: "Commits", color: "#703ab3" },
   pr: { label: "Pull Requests", color: "#0ea5e9" },
   review: { label: "Reviews", color: "#10b981" },
   issue: { label: "Issues", color: "#f59e0b" },
-  discussion: { label: "Discussions", color: "#8b5cf6" },
+  discussion: { label: "Discussions", color: "#8c5cc9" },
 }
 
 function bucketize(
@@ -324,7 +324,7 @@ export function GithubContributionsView() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-extrabold text-zinc-900 dark:text-white flex items-center gap-2">
-            <Activity className="h-6 w-6 text-fuchsia-500" />
+            <Activity className="h-6 w-6 text-zinc-400" />
             Rapport d'Activité GitHub
           </h1>
           <p className="text-xs text-zinc-500 dark:text-zinc-400">
@@ -341,7 +341,7 @@ export function GithubContributionsView() {
               variant="outline"
               className="justify-start text-left font-normal text-xs sm:text-sm gap-2 h-10"
             >
-              <CalendarRange className="h-4 w-4 text-fuchsia-500 shrink-0" />
+              <CalendarRange className="h-4 w-4 text-zinc-400 shrink-0" />
               {range?.from && range?.to
                 ? `${format(range.from, "dd MMM yyyy")} → ${format(range.to, "dd MMM yyyy")}`
                 : "Sélectionner une période"}
@@ -377,7 +377,7 @@ export function GithubContributionsView() {
         <Button
           onClick={analyze}
           disabled={loading || !range?.from || !range?.to}
-          className="rounded-xl bg-fuchsia-600 hover:bg-fuchsia-500 text-white text-xs sm:text-sm gap-2 shadow-md shadow-fuchsia-600/20 h-10"
+          className="rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs sm:text-sm gap-2 shadow-md shadow-brand-600/20 h-10"
         >
           {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Zap className="h-4 w-4" />}
           {loading ? "Analyse en cours..." : "Analyser"}
@@ -415,7 +415,7 @@ export function GithubContributionsView() {
       {/* Loading state */}
       {loading && (
         <div className="w-full flex flex-col items-center justify-center py-32 space-y-4">
-          <Loader2 className="h-8 w-8 animate-spin text-fuchsia-500" />
+          <Loader2 className="h-8 w-8 animate-spin text-zinc-400" />
           <p className="text-xs text-zinc-400 font-mono">Analyse des contributions GitHub en cours...</p>
         </div>
       )}
@@ -460,14 +460,14 @@ export function GithubContributionsView() {
                   title="Total Contributions"
                   value={filteredTotals.total}
                   icon={Activity}
-                  iconColor="text-fuchsia-500 bg-fuchsia-500/10"
+                  iconColor="text-zinc-600 dark:text-zinc-300 bg-zinc-500/10"
                   description={result.period.label}
                 />
                 <KpiCard
                   title="Commits"
                   value={filteredTotals.commits}
                   icon={GitCommit}
-                  iconColor="text-indigo-500 bg-indigo-500/10"
+                  iconColor="text-zinc-600 dark:text-zinc-300 bg-zinc-500/10"
                   description="Commits poussés"
                 />
                 <KpiCard
@@ -495,7 +495,7 @@ export function GithubContributionsView() {
                   title="Discussions"
                   value={filteredTotals.discussions}
                   icon={MessageSquare}
-                  iconColor="text-purple-500 bg-purple-500/10"
+                  iconColor="text-zinc-600 dark:text-zinc-300 bg-zinc-500/10"
                   description="Discussions démarrées"
                 />
                 <KpiCard
@@ -511,7 +511,7 @@ export function GithubContributionsView() {
               <div className="glass-panel rounded-2xl p-6 space-y-4">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <h3 className="text-base font-bold text-zinc-900 dark:text-white flex items-center gap-2">
-                    <Activity className="h-4 w-4 text-fuchsia-500" />
+                    <Activity className="h-4 w-4 text-zinc-400" />
                     Évolution de l'Activité
                   </h3>
                   <Tabs value={granularity} onValueChange={(v) => setGranularity(v as Granularity)}>
@@ -526,12 +526,12 @@ export function GithubContributionsView() {
                 <div className="h-[280px] w-full">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#334155" opacity={0.15} />
-                      <XAxis dataKey="label" stroke="#94a3b8" fontSize={11} tickLine={false} />
-                      <YAxis stroke="#94a3b8" fontSize={11} tickLine={false} allowDecimals={false} />
+                      <CartesianGrid strokeDasharray="3 3" stroke="#2a2a2a" opacity={0.15} />
+                      <XAxis dataKey="label" stroke="#8d8d8d" fontSize={11} tickLine={false} />
+                      <YAxis stroke="#8d8d8d" fontSize={11} tickLine={false} allowDecimals={false} />
                       <RechartsTooltip
                         contentStyle={{
-                          backgroundColor: "rgba(15, 23, 42, 0.9)",
+                          backgroundColor: "rgba(20, 20, 20, 0.95)",
                           borderRadius: "10px",
                           color: "#fff",
                           fontSize: "12px",
@@ -618,10 +618,10 @@ export function GithubContributionsView() {
               <div className="glass-panel rounded-2xl p-6 space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-base font-bold text-zinc-900 dark:text-white flex items-center gap-2">
-                    <BookOpen className="h-4 w-4 text-fuchsia-500" />
+                    <BookOpen className="h-4 w-4 text-zinc-400" />
                     Activité par Repository ({filteredRepositories.length})
                   </h3>
-                  <Badge variant="outline" className="border-fuchsia-500/30 text-fuchsia-500 bg-fuchsia-500/10 text-xs">
+                  <Badge variant="outline" className="border-zinc-500/20 text-zinc-600 dark:text-zinc-300 bg-zinc-500/10 text-xs">
                     Triés par total décroissant
                   </Badge>
                 </div>
@@ -649,7 +649,7 @@ export function GithubContributionsView() {
                                   href={repo.url}
                                   target="_blank"
                                   rel="noreferrer"
-                                  className="font-mono font-semibold text-indigo-500 hover:underline flex items-center gap-1.5"
+                                  className="font-mono font-semibold text-brand-400 hover:underline flex items-center gap-1.5"
                                 >
                                   {repo.repository} <ExternalLink className="h-3 w-3 shrink-0" />
                                 </a>

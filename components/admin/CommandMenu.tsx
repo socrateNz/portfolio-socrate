@@ -71,7 +71,7 @@ export function CommandMenu({ open, setOpen, onNavigate }: CommandMenuProps) {
             onSelect={() => runCommand(() => onNavigate("dashboard"))}
             className="flex items-center gap-2 cursor-pointer rounded-lg p-2 text-sm"
           >
-            <LayoutDashboard className="h-4 w-4 text-indigo-500" />
+            <LayoutDashboard className="h-4 w-4 text-zinc-400" />
             <span>Dashboard Principal (Command Center)</span>
             <CommandShortcut>⌘H</CommandShortcut>
           </CommandItem>
@@ -98,7 +98,7 @@ export function CommandMenu({ open, setOpen, onNavigate }: CommandMenuProps) {
             onSelect={() => runCommand(() => onNavigate("github"))}
             className="flex items-center gap-2 cursor-pointer rounded-lg p-2 text-sm"
           >
-            <Github className="h-4 w-4 text-purple-500" />
+            <Github className="h-4 w-4 text-zinc-400" />
             <span>Panneau GitHub Telemetry</span>
             <CommandShortcut>⌘G</CommandShortcut>
           </CommandItem>
@@ -107,7 +107,7 @@ export function CommandMenu({ open, setOpen, onNavigate }: CommandMenuProps) {
             onSelect={() => runCommand(() => onNavigate("github-contributions"))}
             className="flex items-center gap-2 cursor-pointer rounded-lg p-2 text-sm"
           >
-            <Activity className="h-4 w-4 text-fuchsia-500" />
+            <Activity className="h-4 w-4 text-zinc-400" />
             <span>Rapport d'Activité GitHub (Contributions)</span>
           </CommandItem>
 
@@ -153,7 +153,7 @@ export function CommandMenu({ open, setOpen, onNavigate }: CommandMenuProps) {
             }
             className="flex items-center gap-2 cursor-pointer rounded-lg p-2 text-sm"
           >
-            <Download className="h-4 w-4 text-indigo-400" />
+            <Download className="h-4 w-4 text-zinc-400" />
             <span>Télécharger le CV Executive PDF</span>
           </CommandItem>
 
@@ -205,7 +205,7 @@ export function CommandMenu({ open, setOpen, onNavigate }: CommandMenuProps) {
             onSelect={() => runCommand(() => setTheme("dark"))}
             className="flex items-center gap-2 cursor-pointer rounded-lg p-2 text-sm"
           >
-            <Moon className="h-4 w-4 text-indigo-400" />
+            <Moon className="h-4 w-4 text-zinc-400" />
             <span>Activer le Mode Sombre (Dark)</span>
           </CommandItem>
 

@@ -61,7 +61,7 @@ export function AiInsightsView() {
       </div>
 
       {/* Health Score Overview */}
-      <div className="glass-panel rounded-3xl p-6 border border-amber-500/20 bg-gradient-to-r from-amber-500/10 via-transparent to-purple-500/10">
+      <div className="glass-panel rounded-3xl p-6 border border-amber-500/20 bg-gradient-to-r from-amber-500/10 via-transparent to-brand-500/10">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2">
             <Badge className="bg-amber-500/20 text-amber-500 border-amber-500/40 text-xs font-mono">
@@ -99,7 +99,7 @@ export function AiInsightsView() {
           </h3>
           <div className="space-y-3">
             <div className="p-3.5 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/50 dark:border-zinc-800/50 text-xs space-y-1">
-              <span className="font-bold text-indigo-500">1. Multi-Agent RAG Orchestrator</span>
+              <span className="font-bold text-brand-400">1. Multi-Agent RAG Orchestrator</span>
               <p className="text-zinc-500">Représente 45% des visites qualifiées des recruteurs AI.</p>
             </div>
             <div className="p-3.5 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/50 dark:border-zinc-800/50 text-xs space-y-1">
